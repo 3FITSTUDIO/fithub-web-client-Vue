@@ -1,32 +1,80 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <NavigationBar/>
+    <div id="nav" class="nav">
+      <router-link to="/">Login</router-link>
+      <router-link to="/registration">Registration</router-link>
     </div>
     <router-view/>
   </div>
 </template>
 
+<script>
+import NavigationBar from '@/components/NavigationBar.vue'
+// import LoginView from './views/LoginView'
+// import RegistrationView from './views/RegistrationView'
+
+export default {
+  name: 'App',
+  components: {
+    // RegistrationView,
+    // LoginView,
+    NavigationBar
+  }
+}
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body, html
+{
+  height: 100%;
+  width: 100%;
+  background: linear-gradient( rgb( 67, 229, 111) 0%,  rgb(78, 214, 110) 100%);
+  color: #efefef;
+  font-family: 'Avenir-Heavy', sans-serif;
+  font-size: 17px;
+  border-radius: 25px;
 }
 
-#nav {
+#app {
+  text-align: center;
+}
+
+.nav {
   padding: 30px;
+  text-decoration: none;
 
   a {
+    color: black;
     font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
+}
+.card{
+  border-radius: 25px;
+  font-weight: bolder;
+  color: black;
+  height: auto;
+  margin-bottom: auto;
+  width: 400px;
+  background-color: white !important;
+  text-align: center;
+}
+.card-body{
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+
+.card-header {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.login_btn_registration {
+  color: whitesmoke;
+  background-color: rgb(0,128,0);
+  width: 200px;}
+.login_btn_registration:hover {
+  color: black;
+  background-color: white;
 }
 </style>

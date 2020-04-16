@@ -1,22 +1,56 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import LoginView from '../views/LoginView.vue'
+import RegistrationView from '../views/RegistrationView.vue'
+import DashboardView from '../views/DashboardView'
+import AddWeightView from '../views/AddWeightView'
+import AddCaloriesView from '../views/AddCaloriesView'
+import ProgressMeasurmentsView from '../views/ProgressMeasurmentsView'
+import ProgressCaloriesView from '../views/ProgressCaloriesView'
+import ProgressWeightsView from '../views/ProgressWeightsView'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Login',
+    component: LoginView
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/registration',
+    name: 'Registration',
+    component: RegistrationView
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: DashboardView
+  },
+  {
+    path: '/addWeight',
+    name: 'AddWeightView',
+    component: AddWeightView
+  },
+  {
+    path: '/addCalories',
+    name: 'AddCaloriesView',
+    component: AddCaloriesView
+  },
+  {
+    path: '/progressCalories',
+    name: 'ProgressCalories',
+    component: ProgressCaloriesView
+  },
+  {
+    path: '/progressWeights',
+    name: 'ProgressWeights',
+    component: ProgressWeightsView
+  },
+  {
+    path: '/progressMeasurments',
+    name: 'ProgressMeasurments',
+    component: ProgressMeasurmentsView
   }
 ]
 
