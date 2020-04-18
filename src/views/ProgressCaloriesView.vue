@@ -174,12 +174,12 @@
           <div class="col-sm-6 offset-sm-3">
             <figure>
               <div class="d-flex justify-content-center h-100" >
-                <div class="card" style="width: 700px;">
+                <div class="card" style="">
                   <div class="card-header">
                     <h5><span>Last Week</span></h5>
                   </div>
                   <div class="card-body" style="background-color: #e3e7e6;">
-                    <canvas id="barChart"></canvas>
+                    <BarChart style="width: 350px; height: 200px;"/>
                   </div>
                 </div>
               </div>
@@ -192,8 +192,11 @@
 </template>
 
 <script>
+import BarChart from '../components/BarChart'
+
 export default {
-  name: 'progoressCalories'
+  name: 'progoressCalories',
+  components: { BarChart }
 }
 </script>
 

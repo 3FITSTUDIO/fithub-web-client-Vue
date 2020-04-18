@@ -11,6 +11,7 @@
 
 <script>
 import NavigationBar from '@/components/NavigationBar.vue'
+// import DoughnutChart from './components/DoughnutChart'
 // import LoginView from './views/LoginView'
 // import RegistrationView from './views/RegistrationVi
 
@@ -53,7 +54,7 @@ body, html
   border-radius: 25px;
   font-weight: bolder;
   color: black;
-  height: auto;
+  //height: auto;
   margin-bottom: auto;
   width: 400px;
   background-color: white !important;

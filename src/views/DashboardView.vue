@@ -1,7 +1,7 @@
 <template>
   <section class="features">
     <div class="container">
-      <header style="margin-top: 5%; margin-bottom: 2%;">
+      <header style="margin-bottom: 2%;">
         <h1>Welcome in FitHUB!</h1>
         <h3>It's a pleasure to present to you our APP.</h3>
       </header>
@@ -9,13 +9,13 @@
         <div class="col-sm-12">
           <figure>
             <div class="d-flex justify-content-center h-100">
-              <div class="card" style="width: 700px;">
+              <div class="card" style="width: 600px; ">
                 <div class="card-header">
                   <h5>Date: <span id="datetime1"></span></h5>
                   <h4>Steps: <span id="steps">5460</span></h4>
                 </div>
-                <div class="card-body">
-                  <DoughnutChart/>
+                <div class="card-body" >
+                  <DoughnutChart style="margin: auto; width: 300px; height: 200px;"/>
                 </div>
               </div>
             </div>
@@ -76,6 +76,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
 </style>

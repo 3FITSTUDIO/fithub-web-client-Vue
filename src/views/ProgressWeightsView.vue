@@ -179,7 +179,7 @@
                     <h5><span>Last Week</span></h5>
                   </div>
                   <div class="card-body" style="background-color: #e3e7e6">
-                    <canvas id="barChart"></canvas>
+                    <BarChart style="width: 350px; height: 200px; margin: auto;"/>
                   </div>
                 </div>
               </div>
@@ -192,8 +192,11 @@
 </template>
 
 <script>
+import BarChart from '../components/BarChart'
+
 export default {
-  name: 'progressWeightsView'
+  name: 'progressWeightsView',
+  components: { BarChart }
 }
 </script>
 
