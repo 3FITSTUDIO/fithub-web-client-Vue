@@ -9,7 +9,7 @@
         <div class="col-sm-12">
           <figure>
             <div class="d-flex justify-content-center h-100">
-              <div class="card" style="width: 600px; ">
+              <div class="card">
                 <div class="card-header">
                   <h5>Date: <span id="datetime1"></span></h5>
                   <h4>Steps: <span id="steps">5460</span></h4>
@@ -76,5 +76,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>

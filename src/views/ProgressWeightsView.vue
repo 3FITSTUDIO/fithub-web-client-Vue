@@ -2,20 +2,20 @@
   <main class="w-100">
     <section class="features">
       <div class="container">
-        <div class="row" style=" margin-top: 2%;" >
-          <div class="col-sm-6 col-md-3">
+        <div  class="row" style=" margin-top: 2%;">
+          <div class="col-sm-6 col-md-3" v-for="item in result" :key="item.id">
             <figure>
-              <div class="d-flex justify-content-center h-100">
+              <div class="d-flex justify-content-center">
                 <div class="card">
                   <div class="card-header">
-                    <h3>Date: <span id="datetime_1">21.01.2020</span></h3>
+                    <h3>Date: {{item.date}}</h3>
                   </div>
                   <div class="card-body">
                     <form>
                       <div class="form-row">
                         <div class="form-group col-md-8 offset-md-2 d-inline-block">
                           <label>Weight :</label>
-                          <span id="weight_1"><br/>75 kg</span>
+                          <span><br/>{{item.value}}</span>
                         </div>
                       </div>
                     </form>
@@ -24,167 +24,20 @@
               </div>
             </figure>
           </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_2">20.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Weight :</label>
-                          <span id="weight_2"><br/>74 kg</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+        </div>
+        <div class="col-sm-6 offset-sm-3">
+          <figure>
+            <div class="d-flex justify-content-center h-100">
+              <div class="card">
+                <div class="card-header">
+                  <h5><span>Last Week</span></h5>
+                </div>
+                <div class="card-body" style="background-color: #e3e7e6;">
+                  <BarChart style="width: 350px; height: 200px;"/>
                 </div>
               </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_3">19.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Weight :</label>
-                          <span id="weight_3"><br/>73 kg</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_4">18.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Weight :</label>
-                          <span id="weight_4"><br/>73 kg</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_5">17.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Weight :</label>
-                          <span id="weight_5"><br/>72 kg</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_6">16.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Weight :</label>
-                          <span id="weight_6"><br/>72,5 kg</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_7">15.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Weight :</label>
-                          <span id="weight_7"><br/>73 kg</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_8">14.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Weight :</label>
-                          <span id="weight_8"><br/>72 kg</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 offset-sm-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100" >
-                <div class="card" style="width: 700px;">
-                  <div class="card-header">
-                    <h5><span>Last Week</span></h5>
-                  </div>
-                  <div class="card-body" style="background-color: #e3e7e6">
-                    <BarChart style="width: 350px; height: 200px; margin: auto;"/>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
+            </div>
+          </figure>
         </div>
       </div>
     </section>
@@ -196,7 +49,21 @@ import BarChart from '../components/BarChart'
 
 export default {
   name: 'progressWeightsView',
-  components: { BarChart }
+  components: { BarChart },
+  data () {
+    return {
+      result: [
+        { id: 0, date: '10.12.1997', value: 60 },
+        { id: 1, date: '10.12.1997', value: 61 },
+        { id: 2, date: '10.12.1997', value: 62 },
+        { id: 3, date: '10.12.1997', value: 62 },
+        { id: 4, date: '10.12.1997', value: 63 },
+        { id: 5, date: '10.12.1997', value: 64 },
+        { id: 6, date: '10.12.1997', value: 65 },
+        { id: 7, date: '10.12.1997', value: 66 }
+      ]
+    }
+  }
 }
 </script>
 

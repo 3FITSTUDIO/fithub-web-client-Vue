@@ -2,20 +2,20 @@
   <main class="w-100">
     <section class="features">
       <div class="container">
-        <div class="row" style=" margin-top: 2%;" >
-          <div class="col-sm-6 col-md-3">
+        <div  class="row" style=" margin-top: 2%;">
+          <div class="col-sm-6 col-md-3" v-for="item in result" :key="item.id">
             <figure>
-              <div class="d-flex justify-content-center h-100">
+              <div class="d-flex justify-content-center">
                 <div class="card">
                   <div class="card-header">
-                    <h3>Date: <span id="datetime_1">21.01.2020</span></h3>
+                    <h3>Date: {{item.date}}</h3>
                   </div>
                   <div class="card-body">
                     <form>
                       <div class="form-row">
                         <div class="form-group col-md-8 offset-md-2 d-inline-block">
                           <label>Calories :</label>
-                          <span id="calories_1"><br/>3570 kcal</span>
+                          <span><br/>{{item.value}}</span>
                         </div>
                       </div>
                     </form>
@@ -24,167 +24,20 @@
               </div>
             </figure>
           </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_2">20.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Calories :</label>
-                          <span id="calories_2"><br/>3370 kcal</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+        </div>
+        <div class="col-sm-6 offset-sm-3">
+          <figure>
+            <div class="d-flex justify-content-center h-100">
+              <div class="card">
+                <div class="card-header">
+                  <h5><span>Last Week</span></h5>
+                </div>
+                <div class="card-body" style="background-color: #e3e7e6;">
+                  <BarChart style="width: 350px; height: 200px;"/>
                 </div>
               </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_3">19.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Calories :</label>
-                          <span id="calories_3"><br/>3170 kcal</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_4">18.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Calories :</label>
-                          <span id="calories_4"><br/>3570 kcal</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_5">17.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Calories :</label>
-                          <span id="calories_5"><br/>2950 kcal</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_6">16.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Calories :</label>
-                          <span id="calories_6"><br/>2850 kcal</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_7">15.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Calories :</label>
-                          <span id="calories_7"><br/>3520 kcal</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100">
-                <div class="card">
-                  <div class="card-header">
-                    <h3>Date: <span id="datetime_8">14.01.2020</span></h3>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="form-row">
-                        <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                          <label>Calories :</label>
-                          <span id="calories_8"><br/>2850 kcal</span>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
-          <div class="col-sm-6 offset-sm-3">
-            <figure>
-              <div class="d-flex justify-content-center h-100" >
-                <div class="card" style="">
-                  <div class="card-header">
-                    <h5><span>Last Week</span></h5>
-                  </div>
-                  <div class="card-body" style="background-color: #e3e7e6;">
-                    <BarChart style="width: 350px; height: 200px;"/>
-                  </div>
-                </div>
-              </div>
-            </figure>
-          </div>
+            </div>
+          </figure>
         </div>
       </div>
     </section>
@@ -196,10 +49,41 @@ import BarChart from '../components/BarChart'
 
 export default {
   name: 'progoressCalories',
-  components: { BarChart }
+  components: { BarChart },
+  data () {
+    return {
+      result: [
+        { id: 0, date: '10.12.1997', value: '10' },
+        { id: 1, date: '10.12.1997', value: 10 },
+        { id: 2, date: '10.12.1997', value: 10 },
+        { id: 3, date: '10.12.1997', value: 10 },
+        { id: 4, date: '10.12.1997', value: 10 },
+        { id: 5, date: '10.12.1997', value: 10 },
+        { id: 6, date: '10.12.1997', value: 10 },
+        { id: 7, date: '10.12.1997', value: 10 }
+      ]
+    }
+  }
 }
 </script>
 
-<style scoped>
+<style >
+  .card{
+    border-radius: 25px;
+    font-weight: bolder;
+    color: black;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: white !important;
+    text-align: center;
+  }
+  .card-body{
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
 
+  .card-header {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+  }
 </style>

@@ -25,7 +25,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 body, html
 {
   height: 100%;
@@ -54,7 +54,7 @@ body, html
   border-radius: 25px;
   font-weight: bolder;
   color: black;
-  //height: auto;
+  height: auto;
   margin-bottom: auto;
   width: 400px;
   background-color: white !important;
