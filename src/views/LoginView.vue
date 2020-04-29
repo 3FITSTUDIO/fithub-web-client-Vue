@@ -45,10 +45,14 @@ export default {
   methods: {
     logIn () {
       this.$store.state.accessDenied = false
-      this.$store.state.login = this.login
-      this.$store.state.password = this.password
-      this.$store.dispatch('signIn')
-      this.password = ''
+      if (this.login === '' || this.password === '') {
+        this.$store.state.accessDenied = true
+      } else {
+        this.$store.dispatch('signIn', {
+          login: this.login,
+          password: this.password
+        })
+      }
     }
   }
 

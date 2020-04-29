@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import actions from './actions'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    url: new URL('http://localhost:3000/'),
     isLoggedIn: false,
     secretToken: 'token123',
     login: '',
@@ -24,20 +26,5 @@ export default new Vuex.Store({
       state.isLoggedIn = false
     }
   },
-  actions: {
-    async signIn ({ commit, state }, credentials) {
-      const result = await fetch('http://localhost:3000/user').then(data => data.json())
-      this.users = result
-      console.log(result)
-      const user = this.users.find(user =>
-        user.login === state.login &&
-        user.password === state.password);
-      (user) ? state.userId = user.userId : state.accessDenied = true
-      console.log(user)
-    },
-    signOut ({ commit }) {
-      console.log('out')
-      commit('signOut')
-    }
-  }
+  actions
 })
