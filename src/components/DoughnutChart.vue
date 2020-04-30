@@ -3,6 +3,11 @@ import { Doughnut } from 'vue-chartjs/src/BaseCharts'
 
 export default {
   mixins: [Doughnut],
+  props: {
+    height: {
+      default: 230
+    }
+  },
   mounted () {
     this.renderChart({
       labels: ['steps made', 'steps left'],
@@ -18,7 +23,8 @@ export default {
         display: false
       },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      height: 200
     })
   }
 }

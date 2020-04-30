@@ -2,7 +2,7 @@
   <main class="w-100">
     <section class="features">
       <div class="container">
-        <div  class="row" style=" margin-top: 2%;">
+        <div class="row" style=" margin-top: 2%;">
           <div class="col-sm-6 col-md-3" v-for="item in result" :key="item.id">
             <figure>
               <div class="d-flex justify-content-center">
@@ -68,22 +68,22 @@ export default {
 </script>
 
 <style >
-  .card{
-    border-radius: 25px;
-    font-weight: bolder;
-    color: black;
-    margin-bottom: auto;
-    width: 400px;
-    background-color: white !important;
-    text-align: center;
-  }
-  .card-body{
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-  }
+  /*.card{*/
+  /*  border-radius: 25px;*/
+  /*  font-weight: bolder;*/
+  /*  color: black;*/
+  /*  margin-bottom: auto;*/
+  /*  width: 400px;*/
+  /*  background-color: white;*/
+  /*  text-align: center;*/
+  /*}*/
+  /*.card-body{*/
+  /*  border-bottom-left-radius: 25px;*/
+  /*  border-bottom-right-radius: 25px;*/
+  /*}*/
 
-  .card-header {
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-  }
+  /*.card-header {*/
+  /*  border-top-left-radius: 25px;*/
+  /*  border-top-right-radius: 25px;*/
+  /*}*/
 </style>

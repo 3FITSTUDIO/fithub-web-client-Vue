@@ -71,6 +71,13 @@ export default {
 </script>
 
 <style lang="sass">
+  .nav
+    text-decoration: none
+
+  a.nav-link
+    color: black
+    font-weight: bold
+    text-decoration: none
   .navbar
     color: black
     background-color: rgb( 0,100,0)

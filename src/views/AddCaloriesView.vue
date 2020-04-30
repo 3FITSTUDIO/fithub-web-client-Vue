@@ -32,14 +32,14 @@ export default {
 </script>
 
 <style scoped>
-  .card-body{
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-  }
+  /*.card-body{*/
+  /*  border-bottom-left-radius: 25px;*/
+  /*  border-bottom-right-radius: 25px;*/
+  /*}*/
 
-  .card-header {
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-  }
+  /*.card-header {*/
+  /*  border-top-left-radius: 25px;*/
+  /*  border-top-right-radius: 25px;*/
+  /*}*/
 
 </style>
