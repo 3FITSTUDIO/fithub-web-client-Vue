@@ -22,6 +22,7 @@
               </div>
               <input v-on:click="logIn" value="Sign In" class="btn float-right login_btn"/>
               <p class="accesDenied" v-if="this.$store.state.accessDenied">Błędny login lub hasło</p>
+              <p class="accesDenied" v-if="this.$store.state.serverError">Błąd serwera</p>
             </form>
           </div>
         </div>
@@ -31,6 +32,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'LoginView',
   data () {
@@ -40,11 +43,13 @@ export default {
       user: []
     }
   },
-  computed: {
-  },
+  computed: mapState({
+    isRegistrationViewUp: state => state.isRegistrationViewUp
+  }),
   methods: {
     logIn () {
       this.$store.state.accessDenied = false
+      this.$store.state.serverError = false
       if (this.login === '' || this.password === '') {
         this.$store.state.accessDenied = true
       } else {

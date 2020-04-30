@@ -8,19 +8,19 @@
     </button>
     <div class="collapse navbar-collapse" id="mainmenu">
       <ul class="navbar-nav mr-auto">
-        <router-link to="/dashboard">
-          <li class="nav-item active">
+        <router-link v-if="isLoggedIn" to="/dashboard">
+          <li  class="nav-item active">
             <a class="nav-link" > Dashboard </a>
           </li>
         </router-link>
-        <li class="nav-item dropdown">
+        <li  v-if="isLoggedIn" class="nav-item dropdown">
         <b-dropdown text="Progress" class="dropdown-button" variant="success">
           <router-link to="/progressWeights"><a class="dropdown-item" > Weights </a></router-link>
           <router-link to="/progressMeasurments"><a class="dropdown-item" > Measurments </a></router-link>
           <router-link to="/progressCalories"><a class="dropdown-item" > Calories </a></router-link>
         </b-dropdown>
       </li>
-        <li class="nav-item dropdown">
+        <li v-if="isLoggedIn" class="nav-item dropdown">
           <b-dropdown text="Add" class="dropdown-button" variant="success">
             <router-link to="/addWeight"><a class="dropdown-item" > Weights </a></router-link>
             <router-link to="/addMeasurment"><a class="dropdown-item" > Measurments </a></router-link>
@@ -30,7 +30,7 @@
       </ul>
       <div class="form-inline">
         <ul class="navbar-nav">
-          <li class="nav-item">
+          <li v-if="isLoggedIn" class="nav-item">
             <a class="nav-link" href="#"> Account </a>
           </li>
           <li>
@@ -51,15 +51,20 @@ export default {
   name: 'NavigationBar',
   computed: mapState({
     isLoggedIn: state => state.isLoggedIn,
-    buttonText: state => state.isLoggedIn ? 'Sign out' : 'Sign in'
+    isRegistrationViewUp: state => state.isRegistrationViewUp,
+    buttonText: state => {
+      if (state.isLoggedIn) {
+        return 'Sign Out'
+      } else if (state.isRegistrationViewUp) {
+        return 'Sign In'
+      } else return 'Sign Up'
+    }
   }),
   methods: {
     onButtonClick () {
-      if (this.$store.state.isLoggedIn) {
+      if (this.isLoggedIn || this.isRegistrationViewUp) {
         this.$store.dispatch('signOut')
-        return
-      }
-      this.$store.dispatch('signIn', 'ditto')
+      } else this.$store.dispatch('register')
     }
   }
 }

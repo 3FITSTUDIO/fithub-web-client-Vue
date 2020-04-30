@@ -2,8 +2,6 @@
   <div id="app">
     <NavigationBar/>
     <div id="nav" class="nav">
-      <router-link to="/">Login</router-link>
-      <router-link to="/registration">Registration</router-link>
     </div>
     <router-view/>
   </div>
@@ -11,6 +9,7 @@
 
 <script>
 import NavigationBar from '@/components/NavigationBar.vue'
+// import LoginView from './views/LoginView'
 // import DoughnutChart from './components/DoughnutChart'
 // import LoginView from './views/LoginView'
 // import RegistrationView from './views/RegistrationVi
@@ -50,6 +49,7 @@ body, html
     font-weight: bold;
   }
 }
+
 .card{
   border-radius: 25px;
   font-weight: bolder;
@@ -60,6 +60,7 @@ body, html
   background-color: white !important;
   text-align: center;
 }
+
 .card-body{
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
