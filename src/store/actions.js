@@ -12,7 +12,6 @@ export default {
         console.log(error)
       })
     if (result !== undefined) {
-      console.log(result[0].first_name)
       if (result.length !== 0) {
         state.userId = result[0].id
         state.username = result[0].first_name
@@ -34,5 +33,20 @@ export default {
   async register ({ commit, state }) {
     state.isRegistrationViewUp = true
     await router.push('/registration')
+  },
+  async getArrayData ({ commit, state }, payload) {
+    const result = await fetch(state.url + payload.path + '?' + new URLSearchParams({
+      userID: state.userId
+    }))
+      .then(data => data.json())
+      .catch(error => {
+        console.log(error)
+      })
+    if (result !== undefined) {
+      console.log(result)
+      if (payload.path === 'calories') {
+        state.caloriesData = result
+      } else state.weightData = result
+    }
   }
 }

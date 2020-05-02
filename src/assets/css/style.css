@@ -10,7 +10,7 @@ body, html
 }
 
 .card{
-    width:700px;
+    width:400px;
     height: 600px;
     border-radius: 25px;
     font-weight: bolder;

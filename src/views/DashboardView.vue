@@ -1,45 +1,17 @@
 <template>
   <div class="container">
-    <header style="margin-bottom: 2%;">
+    <header style="margin: 2%;">
       <h1>{{this.$store.state.username}}, welcome in FitHUB!</h1>
     </header>
     <div class="row">
       <div class="col-sm-6 col-md-3" >
-          <div class="d-flex justify-content-center">
-            <div class="card">
-              <div class="card-header">
-                <h3>Calories: </h3>
-              </div>
-              <div class="card-body">
-                <form>
-                  <div class="form-row">
-                    <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                      <label>Calories :</label>
-                      <span><br/></span>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+        <div class="d-flex justify-content-center">
+          <DataDivDashboard data="this.$store.state.caloriesData" name-of-data="Calories"/>
+        </div>
       </div>
       <div class="col-sm-6 col-md-3" >
         <div class="d-flex justify-content-center">
-          <div class="card">
-            <div class="card-header">
-              <h3>Weights: </h3>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="form-row">
-                  <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                    <label>Calories :</label>
-                    <span><br/></span>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+          <DataDivDashboard/>
         </div>
       </div>
       <div class="col-sm-6 col-md-3" >
@@ -72,18 +44,20 @@
 
 <script>
 import DoughnutChart from '../components/DoughnutChart'
+import DataDivDashboard from '../components/DataDivDashboard'
 export default {
   name: 'DashboardView',
-  components: { DoughnutChart }
+  components: { DoughnutChart, DataDivDashboard },
+  mounted () {
+    this.getCaloriesData()
+  },
+  methods: {
+    getCaloriesData () {
+      this.$store.dispatch('getArrayData', { path: 'calories' })
+    }
+  }
 }
 </script>
 
 <style scoped>
-  .row {
-    width: 100%;
-  }
-  .container {
-    width: 100%;
-  }
-
 </style>

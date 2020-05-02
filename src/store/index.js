@@ -16,7 +16,10 @@ export default new Vuex.Store({
     password: '',
     userId: null,
     accessDenied: false,
-    serverError: false
+    serverError: false,
+    caloriesData: null,
+    sleepData: null,
+    weightData: null
   },
   mutations,
   actions
