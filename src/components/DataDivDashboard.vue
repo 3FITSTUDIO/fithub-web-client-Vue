@@ -3,11 +3,12 @@
     <div class="myBox-header">
       <h3>{{ nameOfData }}: </h3>
     </div>
-    <div class="myBox-body">
+    <div class="myBox-body ps">
       <form v-for="item in data" :key="item.id">
         <div class="form-row">
           <div class="col-md-8 offset-md-2">
-            <label>item.date : item.value</label>
+            <label>{{ item.date }} :</label>
+            <span>{{ item.value}}</span>
           </div>
         </div>
         <hr/>
@@ -19,7 +20,18 @@
 <script>
 export default {
   name: 'DataDivDashboard',
-  props: ['data', 'nameOfData']
+  props: {
+    nameOfData: String,
+    data: Array
+  }
+  // mounted () {
+  //   this.consoleLog()
+  // },
+  // methods: {
+  //   consoleLog () {
+  //     console.log(this.props.nameOfData, this.props.data)
+  //   }
+  // }
 }
 </script>
 

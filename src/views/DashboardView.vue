@@ -6,12 +6,12 @@
     <div class="row">
       <div class="col-sm-6 col-md-3" >
         <div class="d-flex justify-content-center">
-          <DataDivDashboard data="this.$store.state.caloriesData" name-of-data="Calories"/>
+          <DataDivDashboard :data="[...caloriesData]" :name-of-data="caloriesTitle"/>
         </div>
       </div>
       <div class="col-sm-6 col-md-3" >
         <div class="d-flex justify-content-center">
-          <DataDivDashboard/>
+          <DataDivDashboard :data="[...caloriesData]" :name-of-data="weightTitle"/>
         </div>
       </div>
       <div class="col-sm-6 col-md-3" >
@@ -45,8 +45,16 @@
 <script>
 import DoughnutChart from '../components/DoughnutChart'
 import DataDivDashboard from '../components/DataDivDashboard'
+import { mapState } from 'vuex'
+
 export default {
   name: 'DashboardView',
+  data () {
+    return {
+      caloriesTitle: 'Calories',
+      weightTitle: 'Weights'
+    }
+  },
   components: { DoughnutChart, DataDivDashboard },
   mounted () {
     this.getCaloriesData()
@@ -54,8 +62,13 @@ export default {
   methods: {
     getCaloriesData () {
       this.$store.dispatch('getArrayData', { path: 'calories' })
+      console.log(this.$store.state.caloriesData[0].id)
     }
-  }
+  },
+  computed: mapState({
+    caloriesData: state => state.caloriesData,
+    weightData: state => state.weightData
+  })
 }
 </script>
 

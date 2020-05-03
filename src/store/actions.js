@@ -35,8 +35,9 @@ export default {
     await router.push('/registration')
   },
   async getArrayData ({ commit, state }, payload) {
+    console.log(state.url + payload.path + '?' + new URLSearchParams({ userId: state.userId }))
     const result = await fetch(state.url + payload.path + '?' + new URLSearchParams({
-      userID: state.userId
+      userId: state.userId
     }))
       .then(data => data.json())
       .catch(error => {
@@ -47,6 +48,7 @@ export default {
       if (payload.path === 'calories') {
         state.caloriesData = result
       } else state.weightData = result
+      commit('sortByDate')
     }
   }
 }

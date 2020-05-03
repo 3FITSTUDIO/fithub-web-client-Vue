@@ -1,3 +1,4 @@
+import methods from './methods'
 export default {
   logData (state) {
     console.log(state.login)
@@ -11,5 +12,8 @@ export default {
     state.isRegistrationViewUp = false
     this.state.user = null
     this.state.userId = null
+  },
+  sortByDate (state) {
+    state.caloriesData.sort(methods.sortByDate)
   }
 }
