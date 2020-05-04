@@ -3,7 +3,8 @@
     <div class="myBox-header">
       <h3>{{ nameOfData }}: </h3>
     </div>
-    <div class="myBox-body ps">
+    <div class="myBox-body">
+      <perfect-scrollbar>
       <form v-for="item in data" :key="item.id">
         <div class="form-row">
           <div class="col-md-8 offset-md-2">
@@ -13,32 +14,31 @@
         </div>
         <hr/>
       </form>
+      </perfect-scrollbar>
     </div>
   </div>
 </template>
 
 <script>
+import { PerfectScrollbar } from 'vue2-perfect-scrollbar'
+
 export default {
   name: 'DataDivDashboard',
+  components: {
+    PerfectScrollbar
+  },
   props: {
     nameOfData: String,
     data: Array
   }
-  // mounted () {
-  //   this.consoleLog()
-  // },
-  // methods: {
-  //   consoleLog () {
-  //     console.log(this.props.nameOfData, this.props.data)
-  //   }
-  // }
+
 }
 </script>
 
 <style >
   .myBox{
     padding: 10px;
-    width:200px;
+    width: 260px;
     height: 600px;
     border-radius: 25px;
     font-weight: bolder;
@@ -48,4 +48,9 @@ export default {
     text-align: center;
   }
 
+  .ps{
+    height: 500px;
+    width:230px
+  }
 </style>
+<style src="vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css"/>

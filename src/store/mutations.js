@@ -14,6 +14,6 @@ export default {
     this.state.userId = null
   },
   sortByDate (state) {
-    state.caloriesData.sort(methods.sortByDate)
+    state.caloriesData = state.caloriesData.sort(methods.sortByDate).reverse()
   }
 }
