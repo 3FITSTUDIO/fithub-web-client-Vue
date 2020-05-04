@@ -5,7 +5,7 @@ export default {
   mixins: [Doughnut],
   props: {
     height: {
-      default: 230
+      default: 210
     }
   },
   mounted () {

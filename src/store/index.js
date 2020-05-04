@@ -19,7 +19,8 @@ const store = new Vuex.Store({
     serverError: false,
     caloriesData: null,
     sleepData: null,
-    weightData: null
+    weightsData: null,
+    measurementsData: null
   },
   mutations,
   actions,

@@ -47,11 +47,12 @@ export default {
       console.log(result)
       if (payload.path === 'calories') {
         state.caloriesData = result
-      } else state.weightData = result
+      } else if (payload.path === 'weights') {
+        state.weightsData = result
+      } else if (payload.path === 'measurements') {
+        state.measurementsData = result
+      }
       commit('sortByDate', { data: result, name: payload.path })
     }
-  },
-  async getMeasurmentsData ({ commit, state }, payload) {
-
   }
 }

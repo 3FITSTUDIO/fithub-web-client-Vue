@@ -68,22 +68,4 @@ export default {
 </script>
 
 <style >
-  /*.card{*/
-  /*  border-radius: 25px;*/
-  /*  font-weight: bolder;*/
-  /*  color: black;*/
-  /*  margin-bottom: auto;*/
-  /*  width: 400px;*/
-  /*  background-color: white;*/
-  /*  text-align: center;*/
-  /*}*/
-  /*.card-body{*/
-  /*  border-bottom-left-radius: 25px;*/
-  /*  border-bottom-right-radius: 25px;*/
-  /*}*/
-
-  /*.card-header {*/
-  /*  border-top-left-radius: 25px;*/
-  /*  border-top-right-radius: 25px;*/
-  /*}*/
 </style>

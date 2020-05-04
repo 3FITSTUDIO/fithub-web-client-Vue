@@ -11,31 +11,25 @@
       </div>
       <div class="col-sm-6 col-md-3" >
         <div class="d-flex justify-content-center">
-          <DataDivDashboard :data="[...weightData]" :name-of-data="weightTitle"/>
+          <DataDivDashboard :data="[...weightsData]" :name-of-data="weightTitle"/>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="myBox">
+          <div class="myBox-header">
+            <h3>Data : xx-xx-xx </h3>
+          </div>
+          <div class="myBox-body">
+            <h3>Steps</h3>
+            <DoughnutChart/>
+            <h3>Sleep</h3>
+            <DoughnutChart/>
+          </div>
         </div>
       </div>
       <div class="col-sm-6 col-md-3" >
-        <h1>charts</h1>
-        <DoughnutChart/>
-        <DoughnutChart/>
-      </div>
-      <div class="col-sm-6 col-md-3" >
         <div class="d-flex justify-content-center">
-          <div class="card">
-            <div class="card-header">
-              <h3>Measurments: </h3>
-            </div>
-            <div class="card-body">
-              <form>
-                <div class="form-row">
-                  <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                    <label>Calories :  </label>
-                    <span>  500</span>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
+          <measurement-data-div :data="[...measurementsData]"/>
         </div>
       </div>
     </div>
@@ -46,6 +40,7 @@
 import DoughnutChart from '../components/DoughnutChart'
 import DataDivDashboard from '../components/DataDivDashboard'
 import { mapState } from 'vuex'
+import MeasurementDataDiv from '../components/MeasurementDataDiv'
 
 export default {
   name: 'DashboardView',
@@ -55,8 +50,9 @@ export default {
       weightTitle: 'Weights'
     }
   },
-  components: { DoughnutChart, DataDivDashboard },
+  components: { MeasurementDataDiv, DoughnutChart, DataDivDashboard },
   mounted () {
+    this.getMeasurementsData()
     this.getCaloriesData()
     this.getWeightsData()
   },
@@ -68,14 +64,29 @@ export default {
     getWeightsData () {
       this.$store.dispatch('getArrayData', { path: 'weights' })
       // console.log(this.$store.state.caloriesData[0].id)
+    },
+    getMeasurementsData () {
+      this.$store.dispatch('getArrayData', { path: 'measurements' })
+      console.log(this.measurementsData)
     }
   },
   computed: mapState({
     caloriesData: state => state.caloriesData,
-    weightData: state => state.weightData
+    weightsData: state => state.weightsData,
+    measurementsData: state => state.measurementsData
   })
 }
 </script>
 
 <style scoped>
+  .myBox{
+    padding: 10px;
+    width: 260px;
+    height: 600px;
+    border-radius: 25px;
+    font-weight: bolder;
+    color: black;
+    margin-bottom: auto;
+    background-color: white;
+  }
 </style>

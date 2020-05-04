@@ -17,7 +17,12 @@ export default {
     const result = payload.data.sort(methods.sortByDate).reverse()
     if (payload.path === 'calories') {
       state.caloriesData = result
-    } else state.weightData = result
+    } else if (payload.path === 'weights') {
+      state.weightsData = result
+    } else if (payload.path === 'measurements') {
+      state.measurementsData = result[0]
+      console.log('measuremtns' + state.measurementsData)
+    }
   },
   initialiseStore (state) {
     // Check if the ID exists
