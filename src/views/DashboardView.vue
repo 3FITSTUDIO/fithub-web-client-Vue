@@ -11,7 +11,7 @@
       </div>
       <div class="col-sm-6 col-md-3" >
         <div class="d-flex justify-content-center">
-          <DataDivDashboard :data="[...caloriesData]" :name-of-data="weightTitle"/>
+          <DataDivDashboard :data="[...weightData]" :name-of-data="weightTitle"/>
         </div>
       </div>
       <div class="col-sm-6 col-md-3" >
@@ -58,11 +58,16 @@ export default {
   components: { DoughnutChart, DataDivDashboard },
   mounted () {
     this.getCaloriesData()
+    this.getWeightsData()
   },
   methods: {
     getCaloriesData () {
       this.$store.dispatch('getArrayData', { path: 'calories' })
-      console.log(this.$store.state.caloriesData[0].id)
+      // console.log(this.$store.state.caloriesData[0].id)
+    },
+    getWeightsData () {
+      this.$store.dispatch('getArrayData', { path: 'weights' })
+      // console.log(this.$store.state.caloriesData[0].id)
     }
   },
   computed: mapState({

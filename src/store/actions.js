@@ -48,7 +48,10 @@ export default {
       if (payload.path === 'calories') {
         state.caloriesData = result
       } else state.weightData = result
-      commit('sortByDate')
+      commit('sortByDate', { data: result, name: payload.path })
     }
+  },
+  async getMeasurmentsData ({ commit, state }, payload) {
+
   }
 }

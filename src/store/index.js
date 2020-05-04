@@ -6,7 +6,7 @@ import methods from './methods'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
     url: new URL('http://localhost:3000/'),
     isLoggedIn: false,
@@ -14,7 +14,6 @@ export default new Vuex.Store({
     secretToken: 'token123',
     login: '',
     username: '',
-    password: '',
     userId: null,
     accessDenied: false,
     serverError: false,
@@ -26,3 +25,9 @@ export default new Vuex.Store({
   actions,
   methods
 })
+
+store.subscribe((mutation, state) => {
+  sessionStorage.setItem('store', JSON.stringify(state))
+})
+
+export default store

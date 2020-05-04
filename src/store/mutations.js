@@ -13,7 +13,18 @@ export default {
     this.state.user = null
     this.state.userId = null
   },
-  sortByDate (state) {
-    state.caloriesData = state.caloriesData.sort(methods.sortByDate).reverse()
+  sortByDate (state, payload) {
+    const result = payload.data.sort(methods.sortByDate).reverse()
+    if (payload.path === 'calories') {
+      state.caloriesData = result
+    } else state.weightData = result
+  },
+  initialiseStore (state) {
+    // Check if the ID exists
+    if (sessionStorage.getItem('store')) {
+      this.replaceState(
+        Object.assign(state, JSON.parse(sessionStorage.getItem('store')))
+      )
+    }
   }
 }

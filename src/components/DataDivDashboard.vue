@@ -8,8 +8,8 @@
       <form v-for="item in data" :key="item.id">
         <div class="form-row">
           <div class="col-md-8 offset-md-2">
-            <label>{{ item.date }} :</label>
-            <span>{{ item.value}}</span>
+            <label class="left">{{ item.date }}: </label>
+            <span class="right">{{ item.value}}</span>
           </div>
         </div>
         <hr/>
@@ -36,6 +36,12 @@ export default {
 </script>
 
 <style >
+  .left {
+    flaot: left;
+  }
+  .right {
+    float: right;
+  }
   .myBox{
     padding: 10px;
     width: 260px;
@@ -45,7 +51,6 @@ export default {
     color: black;
     margin-bottom: auto;
     background-color: white;
-    text-align: center;
   }
 
   .ps{
