@@ -1,81 +1,92 @@
 <template>
-  <section class="features">
-    <div class="container">
-      <header style="margin-top: 5%; margin-bottom: 2%;">
-        <h1>Welcome in FitHUB!</h1>
-        <h3>It's a pleasure to present to you our APP.</h3>
-      </header>
-      <div class="row">
-        <div class="col-sm-12">
-          <figure>
-            <div class="d-flex justify-content-center h-100">
-              <div class="card" style="width: 700px;">
-                <div class="card-header">
-                  <h5>Date: <span id="datetime1"></span></h5>
-                  <h4>Steps: <span id="steps">5460</span></h4>
-                </div>
-                <div class="card-body">
-                  <DoughnutChart/>
-                </div>
-              </div>
-            </div>
-          </figure>
+  <div class="container">
+    <header style="margin: 2%;">
+      <h1>{{this.$store.state.username}}, welcome in FitHUB!</h1>
+    </header>
+    <div class="row">
+      <div class="col-sm-6 col-md-3" >
+        <div class="d-flex justify-content-center">
+          <DataDivDashboard :data="[...caloriesData]" :name-of-data="caloriesTitle"/>
         </div>
-        <div class="col-md-12 col-lg-4 offset-lg-2">
-          <figure>
-            <div class="d-flex justify-content-center h-100">
-              <div class="card">
-                <div class="card-header">
-                  <h4>Date: <span id="datetime2"></span></h4>
-                </div>
-                <div class="card-body">
-                  <form>
-                    <div class="form-row">
-                      <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                        <h4><label>Weight :</label>
-                          <span id="weight"><br/>75 kg</span></h4>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </figure>
+      </div>
+      <div class="col-sm-6 col-md-3" >
+        <div class="d-flex justify-content-center">
+          <DataDivDashboard :data="[...weightsData]" :name-of-data="weightTitle"/>
         </div>
-        <div class="col-md-12 col-lg-4">
-          <figure>
-            <div class="d-flex justify-content-center h-100">
-              <div class="card">
-                <div class="card-header">
-                  <h4>Date: <span id="datetime3"></span></h4>
-                </div>
-                <div class="card-body">
-                  <form>
-                    <div class="form-row">
-                      <div class="form-group col-md-8 offset-md-2 d-inline-block">
-                        <h4><label>Calories :</label>
-                          <span id="calories"><br/>3570 kcal</span></h4>
-                      </div>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </figure>
+      </div>
+      <div class="col-sm-6 col-md-3">
+        <div class="myBox">
+          <div class="myBox-header">
+            <h3>Data : xx-xx-xx </h3>
+          </div>
+          <div class="myBox-body">
+            <h3>Steps</h3>
+            <DoughnutChart/>
+            <h3>Sleep</h3>
+            <DoughnutChart/>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-3" >
+        <div class="d-flex justify-content-center">
+          <measurement-data-div :data="[...measurementsData]"/>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
 import DoughnutChart from '../components/DoughnutChart'
+import DataDivDashboard from '../components/DataDivDashboard'
+import { mapState } from 'vuex'
+import MeasurementDataDiv from '../components/MeasurementDataDiv'
+
 export default {
   name: 'DashboardView',
-  components: { DoughnutChart }
+  data () {
+    return {
+      caloriesTitle: 'Calories',
+      weightTitle: 'Weights'
+    }
+  },
+  components: { MeasurementDataDiv, DoughnutChart, DataDivDashboard },
+  mounted () {
+    this.getMeasurementsData()
+    this.getCaloriesData()
+    this.getWeightsData()
+  },
+  methods: {
+    getCaloriesData () {
+      this.$store.dispatch('getArrayData', { path: 'calories' })
+      // console.log(this.$store.state.caloriesData[0].id)
+    },
+    getWeightsData () {
+      this.$store.dispatch('getArrayData', { path: 'weights' })
+      // console.log(this.$store.state.caloriesData[0].id)
+    },
+    getMeasurementsData () {
+      this.$store.dispatch('getArrayData', { path: 'measurements' })
+      console.log(this.measurementsData)
+    }
+  },
+  computed: mapState({
+    caloriesData: state => state.caloriesData,
+    weightsData: state => state.weightsData,
+    measurementsData: state => state.measurementsData
+  })
 }
 </script>
 
 <style scoped>
-
+  .myBox{
+    padding: 10px;
+    width: 260px;
+    height: 600px;
+    border-radius: 25px;
+    font-weight: bolder;
+    color: black;
+    margin-bottom: auto;
+    background-color: white;
+  }
 </style>

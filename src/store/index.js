@@ -1,34 +1,34 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import actions from './actions'
+import mutations from './mutations'
+import methods from './methods'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
+    url: new URL('http://localhost:3000/'),
     isLoggedIn: false,
-    secretToken: 'token123'
+    isRegistrationViewUp: false,
+    secretToken: 'token123',
+    login: '',
+    username: '',
+    userId: null,
+    accessDenied: false,
+    serverError: false,
+    caloriesData: null,
+    sleepData: null,
+    weightsData: null,
+    measurementsData: null
   },
-  mutations: {
-    signIn (state) {
-      state.isLoggedIn = true
-    },
-    signOut (state) {
-      state.isLoggedIn = false
-    }
-  },
-  actions: {
-    async signIn ({ commit }, credentials) {
-      const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${credentials}`).then(data => data.json())
-
-      console.log(result)
-
-      commit('signIn')
-    },
-    signOut ({ commit }) {
-      console.log('out')
-      commit('signOut')
-    }
-  },
-  modules: {
-  }
+  mutations,
+  actions,
+  methods
 })
+
+store.subscribe((mutation, state) => {
+  sessionStorage.setItem('store', JSON.stringify(state))
+})
+
+export default store

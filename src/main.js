@@ -9,14 +9,14 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { BootstrapVue } from 'bootstrap-vue'
 import './assets/css/style.css'
-
 // Install BootstrapVue
 Vue.use(BootstrapVue, window.VueCharts)
-
-Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
+  beforeCreate () {
+    this.$store.commit('initialiseStore')
+  },
   render: h => h(App)
 }).$mount('#app')
