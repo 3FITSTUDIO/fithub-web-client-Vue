@@ -14,7 +14,7 @@
                 </div>
                 <input v-model="login" type="text" id="inputUsername" class="form-control" placeholder="email or login">
               </div>
-              <div class="input-group form-group">
+              <div class="input-group form-group">Wypelnij
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>

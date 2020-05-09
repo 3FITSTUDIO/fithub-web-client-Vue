@@ -11,13 +11,13 @@ body, html
 
 .card{
     width:400px;
-    height: 600px;
+    height: auto;
     border-radius: 25px;
     font-weight: bolder;
     color: black;
     margin-bottom: auto;
     background-color: white;
-    text-align: center;
+    /*//text-align: center;*/
 }
 
 

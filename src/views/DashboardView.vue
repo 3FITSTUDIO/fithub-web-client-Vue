@@ -15,15 +15,17 @@
         </div>
       </div>
       <div class="col-sm-6 col-md-3">
-        <div class="myBox">
-          <div class="myBox-header">
-            <h3>Data : xx-xx-xx </h3>
-          </div>
-          <div class="myBox-body">
-            <h3>Steps</h3>
-            <DoughnutChart/>
-            <h3>Sleep</h3>
-            <DoughnutChart/>
+        <div class="d-flex justify-content-center">
+          <div class="myBox">
+            <div class="myBox-header">
+              <h3>Data : xx-xx-xx </h3>
+            </div>
+            <div class="myBox-body">
+              <h3>Steps</h3>
+              <DoughnutChart/>
+              <h3>Sleep</h3>
+              <DoughnutChart/>
+            </div>
           </div>
         </div>
       </div>
@@ -80,6 +82,7 @@ export default {
 
 <style scoped>
   .myBox{
+    margin: 10px;
     padding: 10px;
     width: 260px;
     height: 600px;
