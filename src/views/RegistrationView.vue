@@ -10,7 +10,8 @@
             <form>
               <div class="form-row">
                 <div class="form-group col-md-8 offset-md-2">
-                  <span>Login <span v-if="!login.isCorrect" class="right">Wrong login</span></span>
+                  <span>Login <span v-if="!login.isCorrect" class="right">Wrong login</span>
+                  <span v-if="!loginCorrect" class="right">Login already taken</span></span>
                   <input v-model="login.value" type="text" id="inputLogin" class="form-control" placeholder="Example123">
                 </div>
               </div>
@@ -28,7 +29,8 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-8 offset-md-2">
-                  <span>E-mail <span v-if="!email.isCorrect" class="right">Wrong e-mail</span></span>
+                  <span>E-mail <span v-if="!email.isCorrect" class="right">Wrong e-mail</span>
+                  <span v-if="!emailCorrect" class="right">Email already taken</span></span>
                   <input v-model="email.value" type="text" id="inputEmail" class="form-control">
                 </div>
               </div>
@@ -45,6 +47,7 @@
                 </div>
               </div>
               <span class="left" v-if="emptyInputs">Fill all forms</span>
+              <span class="left" v-if="errorWhileCreatingUser">Error while creating user</span>
               <input v-on:click="checkValues" style="float: right" value="create new account" class="btn float-center login_btn_registration"/>
             </form>
           </div>
@@ -55,6 +58,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'RegistrationView',
   data () {
@@ -83,12 +88,17 @@ export default {
       emptyInputs: false,
       arePasswordsCorrect: true,
       ifAllCorrect: true,
-      regExpIfLoginCorrect: new RegExp('^([a-z]+[0-9a-z]{5,})$', 'i'), // Ex1a2mpl3
+      regExpIfLoginCorrect: new RegExp('^([a-z]+[0-9a-z]{4,})$', 'i'), // Ex1a2mpl3
       regExpIfStringCorrect: new RegExp('^([a-z]+)$', 'i'),
       reExpIfEmailCorrect: new RegExp('^[a-z]{2,}[@][a-z]{2,}[.][a-z]{2,}$', 'i'),
       regExpIfPassCorrect: new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
     }// Minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny:
   },
+  computed: mapState({
+    errorWhileCreatingUser: state => state.errorWhileCreatingUser,
+    loginCorrect: state => state.loginCorrect,
+    emailCorrect: state => state.emailCorrect
+  }),
   methods: {
     resetALLInputValues () {
       this.emptyInputs = false
@@ -100,6 +110,9 @@ export default {
       this.ifAllCorrect = true
     },
     checkValues () {
+      this.$store.state.loginCorrect = true
+      this.$store.state.emailCorrect = true
+      this.$store.state.errorWhileCreatingUser = false
       if (this.login.value !== '' &&
         this.name.value !== '' &&
         this.surname.value !== '' &&
@@ -121,6 +134,13 @@ export default {
           this.password.isCorrect &&
           this.arePasswordsCorrect)
         if (this.ifAllCorrect) {
+          this.$store.dispatch('checkIfEmailOrLoginInDataBase', {
+            login: this.login.value,
+            name: this.name.value,
+            surname: this.surname.value,
+            email: this.email.value,
+            password: this.password.value
+          })
           console.log(this.login.value,
             this.name.value,
             this.surname.value,
@@ -142,7 +162,7 @@ export default {
 
 </script >
 
-<style >
+<style scoped>
   .left {
     font-size: 13px;
     text-align: left;

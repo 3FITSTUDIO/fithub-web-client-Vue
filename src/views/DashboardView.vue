@@ -19,6 +19,7 @@
           <div class="myBox">
             <div class="myBox-header">
               <h3>Data : xx-xx-xx </h3>
+              <hr/>
             </div>
             <div class="myBox-body">
               <h3>Steps</h3>
@@ -69,13 +70,28 @@ export default {
     },
     getMeasurementsData () {
       this.$store.dispatch('getArrayData', { path: 'measurements' })
-      console.log(this.measurementsData)
+      // console.log(this.measurementsData)
     }
   },
   computed: mapState({
     caloriesData: state => state.caloriesData,
     weightsData: state => state.weightsData,
-    measurementsData: state => state.measurementsData
+    measurementsData: state => {
+      if (state.measurementsData !== []) {
+        return state.measurementsData
+      } else {
+        const array = [{
+          date: new Date().getDate(),
+          values: [0, 0, 0, 0, 0, 0, 0]
+        },
+        {
+          date: new Date().getDate(),
+          values: [0, 0, 0, 0, 0, 0, 0]
+        }
+        ]
+        return array
+      }
+    }
   })
 }
 </script>

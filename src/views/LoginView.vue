@@ -14,15 +14,16 @@
                 </div>
                 <input v-model="login" type="text" id="inputUsername" class="form-control" placeholder="email or login">
               </div>
-              <div class="input-group form-group">Wypelnij
+              <div class="input-group form-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="fas fa-key"></i></span>
                 </div>
                 <input v-model="password" type="password" class="form-control" id="inputPassword" placeholder="password">
               </div>
               <input v-on:click="logIn" value="Sign In" class="btn float-right login_btn"/>
-              <p class="accesDenied" v-if="this.$store.state.accessDenied">Błędny login lub hasło</p>
-              <p class="accesDenied" v-if="this.$store.state.serverError">Błąd serwera</p>
+              <p class="accesDenied green" v-if="this.$store.state.userCreated">User created!</p>
+              <p class="accesDenied" v-if="this.$store.state.accessDenied">Login or password invalid</p>
+              <p class="accesDenied" v-if="this.$store.state.serverError">Server error</p>
             </form>
           </div>
         </div>
@@ -48,6 +49,7 @@ export default {
   }),
   methods: {
     logIn () {
+      this.$store.state.userCreated = false
       this.$store.state.accessDenied = false
       this.$store.state.serverError = false
       if (this.login === '' || this.password === '') {
@@ -77,5 +79,8 @@ export default {
     text-align: left;
     color: red;
     font-size: 15px;
+  }
+  .green {
+    color: green;
   }
 </style>

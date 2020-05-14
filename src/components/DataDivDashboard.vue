@@ -2,9 +2,12 @@
   <div class="myBox">
     <div class="myBox-header">
       <h3>{{ nameOfData }}: </h3>
+      <hr/>
     </div>
     <div class="myBox-body">
-      <perfect-scrollbar>
+      <span v-if="data.length === 0">No input data :( </span>
+      <span v-else>
+        <perfect-scrollbar>
       <form v-for="item in data" :key="item.id">
         <div class="form-row">
           <div class="col-md-8 offset-md-2">
@@ -15,6 +18,7 @@
         <hr/>
       </form>
       </perfect-scrollbar>
+      </span>
     </div>
   </div>
 </template>

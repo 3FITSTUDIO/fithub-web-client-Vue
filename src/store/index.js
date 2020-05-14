@@ -17,10 +17,14 @@ const store = new Vuex.Store({
     userId: null,
     accessDenied: false,
     serverError: false,
-    caloriesData: null,
-    sleepData: null,
-    weightsData: null,
-    measurementsData: null
+    caloriesData: [],
+    sleepData: [],
+    weightsData: [],
+    measurementsData: [],
+    emailCorrect: true,
+    loginCorrect: true,
+    userCreated: false,
+    errorWhileCreatingUser: false
   },
   mutations,
   actions,

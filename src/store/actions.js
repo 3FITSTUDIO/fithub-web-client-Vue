@@ -54,5 +54,55 @@ export default {
       }
       commit('sortByDate', { data: result, name: payload.path })
     }
+  },
+  async checkIfEmailOrLoginInDataBase ({ commit, state }, payload) {
+    console.log(payload.email, payload.login)
+    const resultLogin = await fetch(state.url + 'user?' + new URLSearchParams({
+      login: payload.login
+    }))
+      .then(data => data.json())
+      .catch(error => {
+        console.log(error)
+      })
+    if (resultLogin !== undefined) {
+      if (resultLogin.length !== 0) {
+        state.loginCorrect = false
+      }
+    }
+    const emailLogin = await fetch(state.url + 'user?' + new URLSearchParams({
+      email: payload.email
+    }))
+      .then(data => data.json())
+      .catch(error => {
+        console.log(error)
+      })
+    if (emailLogin !== undefined) {
+      if (emailLogin.length !== 0) {
+        state.emailCorrect = false
+      }
+    }
+    if (state.emailCorrect && state.loginCorrect) {
+      await fetch(state.url + 'user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          first_name: payload.name,
+          last_name: payload.surname,
+          email: payload.email,
+          login: payload.login,
+          password: payload.password
+        })
+      })
+        .then(() => {
+          state.userCreated = true
+          router.push('/')
+        })
+        .catch(error => {
+          console.log(error)
+          state.errorWhileCreatingUser = true
+        })
+    }
   }
 }
