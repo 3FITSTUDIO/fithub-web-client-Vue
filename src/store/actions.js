@@ -15,6 +15,10 @@ export default {
       if (result.length !== 0) {
         state.userId = result[0].id
         state.username = result[0].first_name
+        state.password = result[0].password
+        state.login = result[0].login
+        state.surname = result[0].last_name
+        state.email = result[0].email
         commit('signIn')
         await router.push('/dashboard')
       } else state.accessDenied = true
@@ -55,32 +59,10 @@ export default {
       commit('sortByDate', { data: result, name: payload.path })
     }
   },
-  async checkIfEmailOrLoginInDataBase ({ commit, state }, payload) {
+  async checkIfEmailOrLoginInDataBase ({ commit, state, dispatch }, payload) {
     console.log(payload.email, payload.login)
-    const resultLogin = await fetch(state.url + 'user?' + new URLSearchParams({
-      login: payload.login
-    }))
-      .then(data => data.json())
-      .catch(error => {
-        console.log(error)
-      })
-    if (resultLogin !== undefined) {
-      if (resultLogin.length !== 0) {
-        state.loginCorrect = false
-      }
-    }
-    const emailLogin = await fetch(state.url + 'user?' + new URLSearchParams({
-      email: payload.email
-    }))
-      .then(data => data.json())
-      .catch(error => {
-        console.log(error)
-      })
-    if (emailLogin !== undefined) {
-      if (emailLogin.length !== 0) {
-        state.emailCorrect = false
-      }
-    }
+    dispatch('checkIfUserWithParamInDatabase', payload.login)
+    dispatch('checkIfUserWithParamInDatabase', payload.email)
     if (state.emailCorrect && state.loginCorrect) {
       await fetch(state.url + 'user', {
         method: 'POST',
@@ -104,5 +86,24 @@ export default {
           state.errorWhileCreatingUser = true
         })
     }
+  },
+  async checkIfUserWithParamInDatabase ({ state, commit }, param) {
+    const result = await fetch(state.url + 'user?' + new URLSearchParams({
+      param
+    }))
+      .then(data => data.json())
+      .catch(error => {
+        console.log(error)
+      })
+    if (result !== undefined) {
+      if (result.length !== 0) {
+        if (param.include('@')) {
+          state.emailCorrect = false
+        } else state.loginCorrect = false
+      }
+    }
+  },
+  async changeParam ({ state, commit }, param) {
+    // TODO
   }
 }

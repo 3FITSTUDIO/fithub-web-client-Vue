@@ -139,7 +139,7 @@ export default {
             name: this.name.value,
             surname: this.surname.value,
             email: this.email.value,
-            password: this.password.value
+            password: this.password.value // TODO zahashowane
           })
           console.log(this.login.value,
             this.name.value,
@@ -159,7 +159,6 @@ export default {
     }
   }
 }
-
 </script >
 
 <style scoped>

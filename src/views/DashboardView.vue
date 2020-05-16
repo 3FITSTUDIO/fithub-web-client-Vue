@@ -44,7 +44,7 @@ import DoughnutChart from '../components/DoughnutChart'
 import DataDivDashboard from '../components/DataDivDashboard'
 import { mapState } from 'vuex'
 import MeasurementDataDiv from '../components/MeasurementDataDiv'
-
+import { sha256 } from 'js-sha256'
 export default {
   name: 'DashboardView',
   data () {
@@ -63,6 +63,7 @@ export default {
     getCaloriesData () {
       this.$store.dispatch('getArrayData', { path: 'calories' })
       // console.log(this.$store.state.caloriesData[0].id)
+      console.log(sha256('Message') + ': to hash')
     },
     getWeightsData () {
       this.$store.dispatch('getArrayData', { path: 'weights' })

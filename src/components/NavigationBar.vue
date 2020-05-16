@@ -31,7 +31,9 @@
       <div class="form-inline">
         <ul class="navbar-nav">
           <li v-if="isLoggedIn" class="nav-item">
-            <a class="nav-link" href="#"> Account </a>
+            <router-link to="/account">
+              <a class="nav-link" href="#"> Account </a>
+            </router-link>
           </li>
           <li>
             <a>

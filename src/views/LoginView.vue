@@ -57,7 +57,7 @@ export default {
       } else {
         this.$store.dispatch('signIn', {
           login: this.login,
-          password: this.password
+          password: this.password // TODO zahashowane
         })
       }
     }

@@ -6,7 +6,7 @@
     </div>
     <div class="myBox-body">
       <div v-if="data.length === 0" style="text-align: center;">
-        <span style="font-weight: bold;">No data input :(</span>
+        <span style="font-weight: bold;">No input data :(</span>
       </div>
       <span v-else>
         <h5 style="text-align: center"> Data: {{data[0].date}}</h5>

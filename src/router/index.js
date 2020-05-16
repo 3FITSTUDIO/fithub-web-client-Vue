@@ -8,6 +8,7 @@ import AddCaloriesView from '../views/AddCaloriesView'
 import ProgressMeasurmentsView from '../views/ProgressMeasurmentsView'
 import ProgressCaloriesView from '../views/ProgressCaloriesView'
 import ProgressWeightsView from '../views/ProgressWeightsView'
+import AccountEditionView from '../views/AccountEditionView'
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,11 @@ const routes = [
     path: '/progressMeasurments',
     name: 'ProgressMeasurments',
     component: ProgressMeasurmentsView
+  },
+  {
+    path: '/account',
+    name: 'AccountEditionView',
+    component: AccountEditionView
   }
 ]
 
