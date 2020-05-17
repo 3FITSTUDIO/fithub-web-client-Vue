@@ -64,7 +64,7 @@ export default {
     dispatch('checkIfUserWithParamInDatabase', payload.login)
     dispatch('checkIfUserWithParamInDatabase', payload.email)
     if (state.emailCorrect && state.loginCorrect) {
-      await fetch(state.url + 'user', {
+      await fetch(state.url + 'user?', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -88,22 +88,59 @@ export default {
     }
   },
   async checkIfUserWithParamInDatabase ({ state, commit }, param) {
-    const result = await fetch(state.url + 'user?' + new URLSearchParams({
-      param
-    }))
+    let urlSP
+    if (param.includes('@') && param.includes('.')) {
+      urlSP = new URLSearchParams({ email: param })
+    } else {
+      urlSP = new URLSearchParams({ login: param })
+    }
+    console.log(state.url + 'user?' + urlSP)
+    const result = await fetch(state.url + 'user?' + urlSP)
       .then(data => data.json())
       .catch(error => {
         console.log(error)
       })
     if (result !== undefined) {
       if (result.length !== 0) {
-        if (param.include('@')) {
+        if (param.includes('@') && param.includes('.')) {
           state.emailCorrect = false
         } else state.loginCorrect = false
       }
     }
   },
-  async changeParam ({ state, commit }, param) {
-    // TODO
+  async changeParam ({ state, commit }, param) { // change password or email
+    const result = await fetch(state.url + 'user/' + state.userId)
+      .then(data => data.json())
+      .catch(error => console.log(error))
+    if (result !== undefined) {
+      console.log('wchodze i zmieniam')
+      if (param.includes('@') && param.includes('.')) {
+        result.email = param
+      } else result.password = param
+      console.log(JSON.stringify(result))
+      await fetch(state.url + 'user/' + state.userId, { // TODO blad
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(result)
+      })
+        .then(() => {
+          console.log('wchodze do zmiany')
+          if (param.includes('@') && param.includes('.')) {
+            state.emailChanged = true
+            state.email = param
+          } else {
+            state.passwordChanged = true
+            state.password = param
+          }
+        })
+        .catch(error => {
+          console.log(error)
+          if (param.includes('@') && param.includes('.')) {
+            state.errorWhileChangingEmail = true
+          } else state.errorWhileChangingPassword = true
+        })
+    }
   }
 }

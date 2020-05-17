@@ -90,7 +90,7 @@ export default {
       ifAllCorrect: true,
       regExpIfLoginCorrect: new RegExp('^([a-z]+[0-9a-z]{4,})$', 'i'), // Ex1a2mpl3
       regExpIfStringCorrect: new RegExp('^([a-z]+)$', 'i'),
-      reExpIfEmailCorrect: new RegExp('^[a-z]{2,}[@][a-z]{2,}[.][a-z]{2,}$', 'i'),
+      reExpIfEmailCorrect: new RegExp('^[a-z][a-z0-9]+[@][a-z]{2,}[.][a-z]{2,}$', 'i'),
       regExpIfPassCorrect: new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
     }// Minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny:
   },

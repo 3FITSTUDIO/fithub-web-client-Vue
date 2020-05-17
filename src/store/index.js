@@ -27,7 +27,11 @@ const store = new Vuex.Store({
     emailCorrect: true,
     loginCorrect: true,
     userCreated: false,
-    errorWhileCreatingUser: false
+    errorWhileCreatingUser: false,
+    emailChanged: false,
+    passwordChanged: false,
+    errorWhileChangingEmail: false,
+    errorWhileChangingPassword: false
   },
   mutations,
   actions,
