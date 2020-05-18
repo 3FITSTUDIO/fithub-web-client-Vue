@@ -1,10 +1,5 @@
 <template>
-    <span>
-      (
-      <span v-if="value >= 0">+</span>
-      <span>{{value}}</span>
-      )
-    </span>
+    <a>(<span v-if="value >= 0">+</span>{{value}})</a>
 </template>
 
 <script>

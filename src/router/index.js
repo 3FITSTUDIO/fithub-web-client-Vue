@@ -5,7 +5,7 @@ import RegistrationView from '../views/RegistrationView.vue'
 import DashboardView from '../views/DashboardView'
 import AddWeightView from '../views/AddWeightView'
 import AddCaloriesView from '../views/AddCaloriesView'
-import ProgressMeasurmentsView from '../views/ProgressMeasurmentsView'
+import ProgressMeasurementsView from '../views/ProgressMeasurementsView'
 import ProgressCaloriesView from '../views/ProgressCaloriesView'
 import ProgressWeightsView from '../views/ProgressWeightsView'
 import AccountEditionView from '../views/AccountEditionView'
@@ -49,9 +49,9 @@ const routes = [
     component: ProgressWeightsView
   },
   {
-    path: '/progressMeasurments',
-    name: 'ProgressMeasurments',
-    component: ProgressMeasurmentsView
+    path: '/progressMeasurements',
+    name: 'ProgressMeasurements',
+    component: ProgressMeasurementsView
   },
   {
     path: '/account',

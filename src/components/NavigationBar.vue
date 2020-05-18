@@ -16,14 +16,14 @@
         <li  v-if="isLoggedIn" class="nav-item dropdown">
         <b-dropdown text="Progress" class="dropdown-button" variant="success">
           <router-link to="/progressWeights"><a class="dropdown-item" > Weights </a></router-link>
-          <router-link to="/progressMeasurments"><a class="dropdown-item" > Measurments </a></router-link>
+          <router-link to="/progressMeasurements"><a class="dropdown-item" > Measurments </a></router-link>
           <router-link to="/progressCalories"><a class="dropdown-item" > Calories </a></router-link>
         </b-dropdown>
       </li>
         <li v-if="isLoggedIn" class="nav-item dropdown">
           <b-dropdown text="Add" class="dropdown-button" variant="success">
             <router-link to="/addWeight"><a class="dropdown-item" > Weights </a></router-link>
-            <router-link to="/addMeasurment"><a class="dropdown-item" > Measurments </a></router-link>
+            <router-link to="/addMeasurement"><a class="dropdown-item" > Measurments </a></router-link>
             <router-link to="/addCalories"><a class="dropdown-item" > Calories </a></router-link>
           </b-dropdown>
         </li>

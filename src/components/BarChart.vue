@@ -13,11 +13,17 @@ for (let i = 1; i <= 30; i++) {
 
 export default {
   mixins: [Bar],
+  props: {
+    daysArray: Array,
+    valuesArray: Array
+  },
   mounted () {
+    // this.logAll()
     this.renderChart({
-      labels: myArrayDay,
+      labels: this.daysArray,
       datasets: [{
-        data: myArrayData,
+        yAxes: [{ id: 'y-axis-1', type: 'linear', position: 'left', ticks: { min: 0, max: 100 } }],
+        data: this.valuesArray,
         backgroundColor:
           '#000000',
         borderColor: '#60e64e',
@@ -31,6 +37,12 @@ export default {
       responsive: true,
       maintainAspectRatio: false
     })
+  },
+  methods: {
+    logAll () {
+      console.log(this.daysArray)
+      console.log(this.valuesArray)
+    }
   }
 }
 </script>

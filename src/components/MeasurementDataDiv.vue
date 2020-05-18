@@ -86,7 +86,7 @@
           <form>
             <div class="form-row">
               <div class="col-md-8 offset-md-2" style="text-align: left">
-                <span class="left">Thigh: </span>
+                <span>Thigh: </span>
                 <span class="right">
                   {{ data[0].values[6] }}
                   <MeasurementDifferenceDiv :value="measureMentsDifferece[6]"/>
@@ -144,11 +144,8 @@ export default {
 </script>
 
 <style scoped>
-  span {
-    font-weight: lighter;
-  }
   .left {
-    flaot: left;
+    float: left;
   }
   .right {
     float: right;

@@ -4,12 +4,12 @@
       <h1>{{this.$store.state.username}}, welcome in FitHUB!</h1>
     </header>
     <div class="row">
-      <div class="col-sm-6 col-md-3" >
+      <div class="col-sm-6 col-md-3">
         <div class="d-flex justify-content-center">
           <DataDivDashboard :data="[...caloriesData]" :name-of-data="caloriesTitle"/>
         </div>
       </div>
-      <div class="col-sm-6 col-md-3" >
+      <div class="col-sm-6 col-md-3">
         <div class="d-flex justify-content-center">
           <DataDivDashboard :data="[...weightsData]" :name-of-data="weightTitle"/>
         </div>
@@ -30,7 +30,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-6 col-md-3" >
+      <div class="col-sm-6 col-md-3">
         <div class="d-flex justify-content-center">
           <measurement-data-div :data="[...measurementsData]"/>
         </div>
@@ -45,6 +45,7 @@ import DataDivDashboard from '../components/DataDivDashboard'
 import { mapState } from 'vuex'
 import MeasurementDataDiv from '../components/MeasurementDataDiv'
 import { sha256 } from 'js-sha256'
+
 export default {
   name: 'DashboardView',
   data () {
@@ -53,7 +54,11 @@ export default {
       weightTitle: 'Weights'
     }
   },
-  components: { MeasurementDataDiv, DoughnutChart, DataDivDashboard },
+  components: {
+    MeasurementDataDiv,
+    DoughnutChart,
+    DataDivDashboard
+  },
   mounted () {
     this.getMeasurementsData()
     this.getCaloriesData()
@@ -88,8 +93,7 @@ export default {
         {
           date: new Date().getDate(),
           values: [0, 0, 0, 0, 0, 0, 0]
-        }
-        ]
+        }]
         return array
       }
     }
@@ -98,7 +102,7 @@ export default {
 </script>
 
 <style scoped>
-  .myBox{
+  .myBox {
     margin: 10px;
     padding: 10px;
     width: 260px;
