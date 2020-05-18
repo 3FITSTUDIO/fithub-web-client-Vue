@@ -48,15 +48,7 @@ export default {
         console.log(error)
       })
     if (result !== undefined) {
-      console.log(result)
-      if (payload.path === 'calories') {
-        state.caloriesData = result
-      } else if (payload.path === 'weights') {
-        state.weightsData = result
-      } else if (payload.path === 'measurements') {
-        state.measurementsData = result
-      }
-      commit('sortByDate', { data: result, name: payload.path })
+      commit('sortByDate', { data: result, path: payload.path })
     }
   },
   async checkIfEmailOrLoginInDataBase ({ commit, state, dispatch }, payload) {
@@ -118,7 +110,7 @@ export default {
         result.email = param
       } else result.password = param
       console.log(JSON.stringify(result))
-      await fetch(state.url + 'user/' + state.userId, { // TODO blad
+      await fetch(state.url + 'user/' + state.userId, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'

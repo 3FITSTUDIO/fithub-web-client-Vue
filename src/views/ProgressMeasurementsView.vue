@@ -3,7 +3,7 @@
     <section class="features">
       <div class="container">
         <header v-if="lastFourMeasurementsData.length === 0" style="margin: 2%;">
-          <h1>No Input data :(</h1>
+          <h1>Measurements: no input data :(</h1>
         </header>
         <div class="row" style=" margin-top: 2%;" >
           <div v-for="item in lastFourMeasurementsData" :key="item.id" class="col-sm-6 col-md-3">

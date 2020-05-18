@@ -3,7 +3,7 @@
     <section class="features">
       <div class="container">
         <header v-if="lastEightRecords.length === 0" style="margin: 2%;">
-          <h1>No Input data :(</h1>
+          <h1>{{typeOfData}}: no input data :(</h1>
         </header>
         <div  class="row" style=" margin-top: 2%;">
           <div class="col-sm-6 col-md-3" v-for="item in lastEightRecords" :key="item.id">
@@ -34,7 +34,8 @@
               <div class="d-flex justify-content-center h-100">
                 <div class="card">
                   <div class="card-header">
-                    <h3>Last Week</h3>
+                    <h4>Last Week</h4>
+                    <span>{{labelDescription}}</span>
                   </div>
                   <div class="card-body" style="background-color: #e3e7e6;">
                     <BarChart
@@ -53,7 +54,8 @@
               <div class="d-flex justify-content-center h-100">
                 <div class="card">
                   <div class="card-header">
-                    <h3>Last Month</h3>
+                    <h4>Last Month</h4>
+                    <span>{{labelDescription}}</span>
                   </div>
                   <div class="card-body" style="background-color: #e3e7e6;">
                     <BarChart
@@ -89,7 +91,8 @@ export default {
   },
   props: {
     arrayData: Array,
-    typeOfData: String
+    typeOfData: String,
+    labelDescription: String
   },
   computed: {
     lastEightRecords: function () {
@@ -149,7 +152,7 @@ export default {
   mounted () {
     this.checkIfAtLeastXRecords(7)
     this.checkIfAtLeastXRecords(30)
-    // this.logAll()
+    this.logAll()
   }
 }
 </script>

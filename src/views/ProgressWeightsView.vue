@@ -1,5 +1,5 @@
 <template>
-  <ProgressDiv :array-data="weightsData" :type-of-data="typeOfData"/>
+  <ProgressDiv :array-data="weightsData" :type-of-data="typeOfData" :label-description="labelDescription"/>
 </template>
 
 <script>
@@ -10,7 +10,8 @@ export default {
   name: 'ProgressWeightsView',
   data () {
     return {
-      typeOfData: 'Weight'
+      typeOfData: 'Weight',
+      labelDescription: 'Weight at date'
     }
   },
   components: { ProgressDiv },

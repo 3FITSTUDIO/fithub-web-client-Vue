@@ -41,7 +41,7 @@ export default {
 
 <style >
   .left {
-    flaot: left;
+    float: left;
   }
   .right {
     float: right;

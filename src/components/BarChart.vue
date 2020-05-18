@@ -18,11 +18,10 @@ export default {
     valuesArray: Array
   },
   mounted () {
-    // this.logAll()
     this.renderChart({
       labels: this.daysArray,
       datasets: [{
-        yAxes: [{ id: 'y-axis-1', type: 'linear', position: 'left', ticks: { min: 0, max: 100 } }],
+        minBarLength: 20,
         data: this.valuesArray,
         backgroundColor:
           '#000000',
@@ -35,7 +34,14 @@ export default {
         display: false
       },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     })
   },
   methods: {

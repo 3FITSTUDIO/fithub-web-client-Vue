@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import { sha256 } from 'js-sha256'
 import { mapState } from 'vuex'
 
 export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new i confirm te same*, sprawdzic, czy niepuste, sprawdzic czy stare poprawne lokalnie, sprawdzic czy nowe haslo spelnia warunki, jesli wszystko ok, to dispatch(change Password)
@@ -146,10 +147,10 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
       this.wrongOldPassword = false
       this.emptyPasswords = false
       this.password.isCorrect = true
-      if (this.password.value !== '' && this.arePasswordsCorrect && this.oldPasswordInput === this.oldPassword) {
+      if (this.password.value !== '' && this.arePasswordsCorrect && sha256(this.oldPasswordInput) === this.oldPassword) {
         this.password.isCorrect = (this.regExpIfPassCorrect.test(this.password.value))
         if (this.password.isCorrect) {
-          this.$store.dispatch('changeParam', this.password.value).then(() => {
+          this.$store.dispatch('changeParam', sha256(this.password.value)).then(() => {
             console.log('probuje wejsc')
             if (this.passwordChanged) {
               console.log('wchodze')
@@ -159,7 +160,7 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
             }
           }) // TODO hash
         }
-      } else if (this.oldPasswordInput !== this.oldPassword) {
+      } else if (sha256(this.oldPasswordInput) !== this.oldPassword) {
         this.wrongOldPassword = true
       } else if (this.password.value === '' || this.confirm_password === '' || this.oldPasswordInput === '') {
         this.emptyPasswords = true

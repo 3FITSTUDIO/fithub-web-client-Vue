@@ -1,5 +1,5 @@
 <template>
-  <ProgressDiv :array-data="caloriesData" :type-of-data="typeOfData"/>
+  <ProgressDiv :array-data="caloriesData" :type-of-data="typeOfData" :label-description="labelDescription"/>
 </template>
 
 <script>
@@ -10,7 +10,8 @@ export default {
   name: 'ProgressCaloriesView',
   data () {
     return {
-      typeOfData: 'Calories'
+      typeOfData: 'Calories',
+      labelDescription: 'Calories eaten'
     }
   },
   components: { ProgressDiv },

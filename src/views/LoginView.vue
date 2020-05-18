@@ -34,6 +34,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { sha256 } from 'js-sha256'
 
 export default {
   name: 'LoginView',
@@ -57,7 +58,7 @@ export default {
       } else {
         this.$store.dispatch('signIn', {
           login: this.login,
-          password: this.password // TODO zahashowane
+          password: sha256(this.password) // TODO zahashowane
         })
       }
     }
