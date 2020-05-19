@@ -13,24 +13,42 @@ for (let i = 1; i <= 30; i++) {
 
 export default {
   mixins: [Bar],
+  props: {
+    daysArray: Array,
+    valuesArray: Array
+  },
   mounted () {
     this.renderChart({
-      labels: myArrayDay,
+      labels: this.daysArray,
       datasets: [{
-        data: myArrayData,
+        minBarLength: 20,
+        data: this.valuesArray,
         backgroundColor:
           '#000000',
-        borderColor: '#60e64e',
+        borderColor: '#3f9380',
         borderWidth: 1,
-        hoverBackgroundColor: '#f4a840'
+        hoverBackgroundColor: '#3f9380'
       }]
     }, {
       legend: {
         display: false
       },
       responsive: true,
-      maintainAspectRatio: false
+      maintainAspectRatio: false,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
     })
+  },
+  methods: {
+    logAll () {
+      console.log(this.daysArray)
+      console.log(this.valuesArray)
+    }
   }
 }
 </script>
