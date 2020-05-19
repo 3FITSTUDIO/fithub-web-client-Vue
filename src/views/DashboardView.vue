@@ -114,7 +114,7 @@ export default {
     sleepValue: state => state.sleepData[0].value,
     sleepDate: state => state.sleepData[0].date,
     stepsValue: state => state.stepsData[0].value,
-    stepsDate: state => state.sleepData[0].value,
+    stepsDate: state => state.sleepData[0].date,
     measurementsData: state => {
       if (state.measurementsData !== []) {
         return state.measurementsData

@@ -2,11 +2,24 @@ body, html
 {
     height: 100%;
     width: 100%;
-    background: linear-gradient( rgb( 67, 229, 111) 0%,  rgb(78, 214, 110) 100%);
+    background: rgb(150, 209, 166);
     color: #efefef;
     font-family: 'Avenir-Heavy', sans-serif;
     font-size: 17px;
     text-align: center;
+}
+
+.fithub_btn {
+    font-weight: bold;
+    margin: 5px;
+    color: whitesmoke;
+    background-color: #3f9380;
+    width: 100px;
+}
+
+.fithub_btn:hover{
+    color: black;
+    background-color: #96d1a6;
 }
 
 .card{

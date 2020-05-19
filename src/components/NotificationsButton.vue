@@ -25,7 +25,7 @@ export default {
     font-weight: bold;
     margin: 5px;
     color: whitesmoke;
-    background-color: rgb(0,128,0);
+    background-color: #3f9380;
     width: auto;
   }
   .edit_btn:hover {

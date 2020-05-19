@@ -23,6 +23,9 @@ export default {
     state.email = ''
     state.userId = null
     state.password = ''
+    state.sex = ''
+    state.height = null
+    state.yearOfBirth = null
     state.accessDenied = false
     state.serverError = false
     state.caloriesData = []
@@ -38,8 +41,10 @@ export default {
     state.errorWhileCreatingUser = false
     state.emailChanged = false
     state.passwordChanged = false
+    state.heightChanged = false
     state.errorWhileChangingEmail = false
     state.errorWhileChangingPassword = false
+    state.errorWhileChangingHeight = false
   },
   sortByDate (state, payload) {
     const result = payload.data.sort(methods.sortByDate).reverse()

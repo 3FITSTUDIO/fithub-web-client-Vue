@@ -25,9 +25,9 @@ export default {
         data: this.valuesArray,
         backgroundColor:
           '#000000',
-        borderColor: '#60e64e',
+        borderColor: '#3f9380',
         borderWidth: 1,
-        hoverBackgroundColor: '#f4a840'
+        hoverBackgroundColor: '#3f9380'
       }]
     }, {
       legend: {

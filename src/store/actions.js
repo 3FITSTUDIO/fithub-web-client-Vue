@@ -19,6 +19,9 @@ export default {
         state.login = result[0].login
         state.surname = result[0].last_name
         state.email = result[0].email
+        state.sex = result[0].sex
+        state.height = result[0].height
+        state.yearOfBirth = result[0].yearOfBirth
         commit('signIn')
         await router.push('/dashboard')
       } else state.accessDenied = true
@@ -66,7 +69,10 @@ export default {
           last_name: payload.surname,
           email: payload.email,
           login: payload.login,
-          password: payload.password
+          password: payload.password,
+          sex: payload.sex,
+          height: payload.height,
+          yearOfBirth: payload.yearOfBirth
         })
       })
         .then(() => {
@@ -105,8 +111,9 @@ export default {
       .then(data => data.json())
       .catch(error => console.log(error))
     if (result !== undefined) {
-      console.log('wchodze i zmieniam')
-      if (param.includes('@') && param.includes('.')) {
+      if (typeof (param) === 'number') {
+        result.height = param
+      } else if (param.includes('@') && param.includes('.')) {
         result.email = param
       } else result.password = param
       console.log(JSON.stringify(result))
@@ -119,7 +126,10 @@ export default {
       })
         .then(() => {
           console.log('wchodze do zmiany')
-          if (param.includes('@') && param.includes('.')) {
+          if (typeof (param) === 'number') {
+            state.heightChanged = true
+            state.height = param
+          } else if (param.includes('@') && param.includes('.')) {
             state.emailChanged = true
             state.email = param
           } else {
@@ -129,10 +139,26 @@ export default {
         })
         .catch(error => {
           console.log(error)
-          if (param.includes('@') && param.includes('.')) {
+          if (typeof (param) === 'number') {
+            state.errorWhileChangingHeight = true
+          } else if (param.includes('@') && param.includes('.')) {
             state.errorWhileChangingEmail = true
           } else state.errorWhileChangingPassword = true
         })
     }
+  },
+  async deleteRecord ({ state, commit }, payload) {
+    await fetch(state.url + payload.path + '/' + payload.itemID, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
+    })
+      .then(() => {
+        console.log('Notification deleted')
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 }

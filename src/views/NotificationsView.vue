@@ -18,10 +18,11 @@
                       <div class="form-row">
                         <div class="form-group col-md-8 offset-md-2 d-inline-block">
                           <label>Message :</label>
-                          <span><br/>{{item.message}}</span>
+                          <div class="message"><br/>{{item.message}}</div>
                         </div>
                       </div>
                     </form>
+                    <notifications-delete-button :button-i-d="item.id"/>
                   </div>
                 </div>
               </div>
@@ -35,9 +36,11 @@
 
 <script>
 import { mapState } from 'vuex'
+import NotificationsDeleteButton from '../components/NotificationsDeleteButton'
 
 export default {
   name: 'NotificationsView',
+  components: { NotificationsDeleteButton },
   computed: mapState({
     notificationsData: state => state.notificationsData
   }),
@@ -53,5 +56,18 @@ export default {
 </script>
 
 <style scoped>
-
+.card {
+  padding: 0px;
+  min-width: 400px;
+}
+.card-body{
+  margin: auto;
+  padding: 0px;
+}
+  .message {
+    text-align: center;
+    display: flex;
+    width: auto;
+    justify-content: center;
+  }
 </style>

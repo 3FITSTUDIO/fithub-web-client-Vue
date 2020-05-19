@@ -18,6 +18,9 @@ const store = new Vuex.Store({
     email: '',
     userId: null,
     password: '',
+    sex: '',
+    height: null,
+    yearOfBirth: null,
     accessDenied: false,
     serverError: false,
     sleepDataLoaded: false,
@@ -40,8 +43,10 @@ const store = new Vuex.Store({
     errorWhileCreatingUser: false,
     emailChanged: false,
     passwordChanged: false,
+    heightChanged: false,
     errorWhileChangingEmail: false,
-    errorWhileChangingPassword: false
+    errorWhileChangingPassword: false,
+    errorWhileChangingHeight: false
   },
   mutations,
   actions,

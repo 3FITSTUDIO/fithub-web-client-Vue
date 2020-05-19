@@ -25,6 +25,26 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-8 offset-md-2">
+                  <span>Sex: {{sex}} </span>
+                  <p>Year of birth: {{yearOfBirth}}</p>
+                  <span>Height: {{height}}
+                    <select class="f-right" v-model="selectedHeight">
+                    <option disabled value="">Change</option>
+                    <option v-for="item in heightsToSelect" v-bind:value="item" v-bind:key="item.id">
+                      {{ item.value }} cm
+                    </option>
+                  </select>
+                  </span>
+                  <p>
+                    <span class="left failure" v-if="!isHeightSelected">Not selected</span>
+                    <span class="left failure" v-if="errorWhileChangingHeight">Server error</span>
+                    <span class="left success" v-if="heightChanged">Height changed</span>
+                    <input v-on:click="changeHeight" value="Save" style="float: right" class="btn fithub_btn"/>
+                  </p>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-8 offset-md-2">
                   <p>Email: {{oldEmail}} </p>
                   <span>
                     <input v-model="email.value" type="email" id="inputEmail" placeholder="new email" class="form-control">
@@ -33,7 +53,7 @@
                     <span v-if="!email.isCorrect" class="left failure">Wrong email</span>
                     <span v-if="!emailCorrect" class="left failure">Email taken</span>
                     <span v-if="emptyEmail" class="left failure">Fill the form</span>
-                    <input v-on:click="changeEmail" value="Save" style="float: right" class="btn edit_btn"/>
+                    <input v-on:click="changeEmail" value="Save" style="float: right" class="btn fithub_btn"/>
                   </span>
                 </div>
               </div>
@@ -57,7 +77,7 @@
                   <p>
                     <span class="left failure" v-if="errorWhileChangingPassword">Server Error</span>
                     <span class="left success" v-if="passwordChanged">Password changed</span>
-                    <input v-on:click="changePassword" value="Save" style="float: right" class="btn edit_btn"/>
+                    <input v-on:click="changePassword" value="Save" style="float: right" class="btn fithub_btn"/>
                   </p>
                 </div>
               </div>
@@ -77,6 +97,9 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
   name: 'AccountEditionView',
   data () {
     return {
+      isHeightSelected: true,
+      selectedHeight: '',
+      heightsToSelect: [],
       email: {
         value: '',
         isCorrect: true
@@ -98,21 +121,27 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
     }// Minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny:
   },
   computed: mapState({
+    heightChanged: state => state.heightChanged,
     errorWhileCreatingUser: state => state.errorWhileCreatingUser,
     loginCorrect: state => state.loginCorrect,
     emailCorrect: state => state.emailCorrect,
     name: state => state.username,
     surname: state => state.surname,
     login: state => state.login,
+    height: state => state.height,
+    sex: state => (state.sex === 'F') ? 'Female' : 'Male',
+    yearOfBirth: state => state.yearOfBirth,
     oldPassword: state => state.password,
     oldEmail: state => state.email,
     emailChanged: state => state.emailChanged,
     passwordChanged: state => state.passwordChanged,
     errorWhileChangingPassword: state => state.errorWhileChangingPassword,
-    errorWhileChangingEmail: state => state.errorWhileChangingEmail
+    errorWhileChangingEmail: state => state.errorWhileChangingEmail,
+    errorWhileChangingHeight: state => state.errorWhileChangingHeight
   }),
   methods: {
     resetAllVariables () {
+      this.$store.state.heightChanged = false
       this.$store.state.emailCorrect = true
       this.$store.state.loginCorrect = true
       this.$store.state.userCreated = false
@@ -121,6 +150,15 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
       this.$store.state.passwordChanged = false
       this.$store.state.errorWhileChangingEmail = false
       this.$store.state.errorWhileChangingPassword = false
+      this.$store.state.errorWhileChangingHeight = false
+    },
+    changeHeight () {
+      this.isHeightSelected = true
+      if (this.selectedHeight !== '') {
+        this.resetAllVariables()
+        console.log(typeof (this.selectedHeight.value) === 'number')
+        this.$store.dispatch('changeParam', this.selectedHeight.value)
+      } else this.isHeightSelected = false
     },
     changeEmail () {
       console.log(this.email.value)
@@ -165,6 +203,9 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
       } else if (this.password.value === '' || this.confirm_password === '' || this.oldPasswordInput === '') {
         this.emptyPasswords = true
       }
+    },
+    createHeightArray () {
+      this.heightsToSelect = Array.from({ length: 90 }, (x, i) => { return { id: i, value: 130 + i } })
     }
   },
   watch: {
@@ -175,23 +216,21 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
     }
   },
   mounted () {
+    this.createHeightArray()
     this.resetAllVariables()
   }
 }
 </script>
 
 <style scoped>
+  p {
+    margin-bottom: 0;
+  }
   .success {
     color: green;
   }
   .failure {
     color: red
-  }
-  .edit_btn {
-    margin: 5px;
-    color: whitesmoke;
-    background-color: rgb(0,128,0);
-    width: 100px;
   }
   .form-row {
     margin: 0;

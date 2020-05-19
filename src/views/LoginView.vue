@@ -21,9 +21,9 @@
                 <input v-model="password" type="password" class="form-control" id="inputPassword" placeholder="password">
               </div>
               <input v-on:click="logIn" value="Sign In" class="btn float-right login_btn"/>
-              <p class="accesDenied green" v-if="this.$store.state.userCreated">User created!</p>
-              <p class="accesDenied" v-if="this.$store.state.accessDenied">Login or password invalid</p>
-              <p class="accesDenied" v-if="this.$store.state.serverError">Server error</p>
+              <p class="accessDenied green" v-if="this.$store.state.userCreated">User created!</p>
+              <p class="accessDenied" v-if="this.$store.state.accessDenied">Login or password invalid</p>
+              <p class="accessDenied" v-if="this.$store.state.serverError">Server error</p>
             </form>
           </div>
         </div>
@@ -70,13 +70,13 @@ export default {
 <style scoped>
   .login_btn {
     color: whitesmoke;
-    background-color: rgb(0,128,0);
+    background-color: #3f9380;
     width: 150px;}
   .login_btn:hover {
     color: black;
-    background-color: white;
+    background-color: #96d1a6;
   }
-  .accesDenied {
+  .accessDenied {
     text-align: left;
     color: red;
     font-size: 15px;

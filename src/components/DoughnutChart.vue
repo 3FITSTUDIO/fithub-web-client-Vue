@@ -22,9 +22,9 @@ export default {
       datasets: [{
         label: { display: false },
         data: [this.userValue, this.preventNegativeValue],
-        backgroundColor: ['#2EF429', '#FCEBCC'],
-        borderColor: ['#2EF429', '#FCEBCC'],
-        hoverBackgroundColor: ['#2EF429', '#D9BA8C']
+        backgroundColor: ['#3f9380', '#dce0dc'],
+        borderColor: ['#3f9380', '#dce0dc'],
+        hoverBackgroundColor: ['#3f9380', '#ffffff']
       }]
     }, {
       legend: {

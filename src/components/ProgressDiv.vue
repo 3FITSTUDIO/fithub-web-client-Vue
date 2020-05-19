@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="col-sm-6">
+          <div class="col-lg-6">
             <figure>
               <div class="d-flex justify-content-center h-100">
                 <div class="card">
@@ -49,7 +49,7 @@
               </div>
             </figure>
           </div>
-          <div class="col-sm-6">
+          <div class="col-lg-6">
             <figure>
               <div class="d-flex justify-content-center h-100">
                 <div class="card">
