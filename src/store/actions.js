@@ -55,7 +55,7 @@ export default {
     }
   },
   async checkIfEmailOrLoginInDataBase ({ commit, state, dispatch }, payload) {
-    console.log(payload.email, payload.login)
+    console.log(payload)
     dispatch('checkIfUserWithParamInDatabase', payload.login)
     dispatch('checkIfUserWithParamInDatabase', payload.email)
     if (state.emailCorrect && state.loginCorrect) {
@@ -106,7 +106,7 @@ export default {
       }
     }
   },
-  async changeParam ({ state, commit }, param) { // change password or email
+  async changeParam ({ state, commit }, param) { // change password or email or height
     const result = await fetch(state.url + 'user/' + state.userId)
       .then(data => data.json())
       .catch(error => console.log(error))

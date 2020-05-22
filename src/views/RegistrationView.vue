@@ -43,7 +43,7 @@
                   Year of birth
                   <select class="f-right" v-model="selectedYearOfBirth">
                     <option disabled value="">Choose year</option>
-                    <option v-for="item in yearsToSelect" v-bind:value="item" v-bind:key="item.id">
+                    <option v-for="item in yearsToSelect" v-bind:value="item.value" v-bind:key="item.id">
                       {{ item.value }}
                     </option>
                   </select>
@@ -54,13 +54,13 @@
                   Height
                   <select class="f-right" v-model="selectedHeight">
                     <option disabled value="">Choose height</option>
-                    <option v-for="item in heightsToSelect" v-bind:value="item" v-bind:key="item.id">
+                    <option v-for="item in heightsToSelect" v-bind:value="item.value" v-bind:key="item.id">
                       {{ item.value }} cm
                     </option>
                   </select>
                 </div>
               </div>
-              <span>Selected: {{ selectedSex }} {{selectedYearOfBirth}} {{selectedHeight}}</span>
+<!--              <span>Selected: {{ selectedSex }} {{selectedYearOfBirth}} {{selectedHeight}}</span>-->
               <div class="form-row">
                 <div class="form-group col-md-8 offset-md-2">
                   <span>E-mail <span v-if="!email.isCorrect" class="right">Wrong e-mail</span>
@@ -144,10 +144,15 @@ export default {
     emailCorrect: state => state.emailCorrect
   }),
   methods: {
-    resetALLInputValues () {
+    resetInputValues () {
       this.selectedYearOfBirth = ''
       this.selectedHeight = ''
       this.selectedSex = ''
+      this.surname.value = ''
+      this.name.value = ''
+      this.login.value = ''
+    },
+    resetInputIsCorrect () {
       this.emptyInputs = false
       this.login.isCorrect = true
       this.name.isCorrect = true
@@ -169,8 +174,8 @@ export default {
         this.selectedSex !== '' &&
         this.selectedHeight !== '' &&
         this.selectedYearOfBirth !== '') {
+        this.resetInputIsCorrect()
         this.emptyInputs = false
-        this.resetALLInputValues()
         console.log('niepuste!')
         this.login.isCorrect = (this.regExpIfLoginCorrect.test(this.login.value))
         this.name.isCorrect = (this.regExpIfStringCorrect.test(this.name.value))
@@ -193,6 +198,8 @@ export default {
             sex: this.selectedSex,
             height: this.selectedHeight,
             yearOfBirth: this.selectedYearOfBirth
+          }).then(() => {
+            this.resetInputValues()
           })
           console.log(this.login.value,
             this.name.value,
@@ -203,13 +210,13 @@ export default {
         }
       } else this.emptyInputs = true
     },
-    createBirthArray () {
+    createSelectArrays () {
       this.yearsToSelect = Array.from({ length: 100 }, (x, i) => { return { id: i, value: 2020 - i } })
       this.heightsToSelect = Array.from({ length: 90 }, (x, i) => { return { id: i, value: 130 + i } })
     }
   },
   mounted () {
-    this.createBirthArray()
+    this.createSelectArrays()
   },
   watch: {
     confirm_password () {
