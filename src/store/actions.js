@@ -77,6 +77,9 @@ export default {
       })
         .then(() => {
           state.userCreated = true
+          state.accessDenied = false
+          state.serverError = false
+          state.isRegistrationViewUp = false
           router.push('/')
         })
         .catch(error => {
