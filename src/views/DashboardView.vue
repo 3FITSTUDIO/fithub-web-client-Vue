@@ -2,9 +2,7 @@
   <div class="container">
     <header style="margin: 2%;">
       <div>
-        <h1>
-          {{this.$store.state.username}}, welcome in FitHUB!
-        </h1>
+        <welcome-name-div/>
         <notifications-button/>
       </div>
     </header>
@@ -57,6 +55,7 @@ import { mapState } from 'vuex'
 import MeasurementDataDiv from '../components/MeasurementDataDiv'
 import { sha256 } from 'js-sha256'
 import NotificationsButton from '../components/NotificationsButton'
+import WelcomeNameDiv from '../components/WelcomeNameDiv'
 
 export default {
   name: 'DashboardView',
@@ -67,6 +66,7 @@ export default {
     }
   },
   components: {
+    WelcomeNameDiv,
     NotificationsButton,
     MeasurementDataDiv,
     DoughnutChart,

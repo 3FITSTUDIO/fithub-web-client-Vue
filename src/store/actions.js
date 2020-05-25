@@ -56,9 +56,10 @@ export default {
   },
   async checkIfEmailOrLoginInDataBase ({ commit, state, dispatch }, payload) {
     console.log(payload)
-    dispatch('checkIfUserWithParamInDatabase', payload.login)
-    dispatch('checkIfUserWithParamInDatabase', payload.email)
+    await dispatch('checkIfUserWithParamInDatabase', payload.login)
+    await dispatch('checkIfUserWithParamInDatabase', payload.email)
     if (state.emailCorrect && state.loginCorrect) {
+      console.log('tworze')
       await fetch(state.url + 'user?', {
         method: 'POST',
         headers: {
@@ -103,6 +104,7 @@ export default {
       })
     if (result !== undefined) {
       if (result.length !== 0) {
+        console.log(result)
         if (param.includes('@') && param.includes('.')) {
           state.emailCorrect = false
         } else state.loginCorrect = false

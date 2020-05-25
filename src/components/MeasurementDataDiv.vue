@@ -17,7 +17,7 @@
                 <label class="left">Neck: </label>
                 <span class="right">
                   {{ data[0].values[0] }}
-                  <MeasurementDifferenceDiv :value="measureMentsDifferece[0]"/>
+                  <MeasurementDifferenceDiv :value="measurementsDifference[0]"/>
                 </span>
               </div>
             </div>
@@ -29,7 +29,7 @@
                 <label class="left">Chest: </label>
                 <span class="right">
                   {{ data[0].values[1] }}
-                  <MeasurementDifferenceDiv :value="measureMentsDifferece[1]"/>
+                  <MeasurementDifferenceDiv :value="measurementsDifference[1]"/>
                 </span>
               </div>
             </div>
@@ -41,7 +41,7 @@
                 <label class="left">Bicep: </label>
                 <span class="right">
                   {{ data[0].values[2] }}
-                  <MeasurementDifferenceDiv :value="measureMentsDifferece[2]"/>
+                  <MeasurementDifferenceDiv :value="measurementsDifference[2]"/>
                 </span>
               </div>
             </div>
@@ -53,7 +53,7 @@
                 <label class="left">Forearm: </label>
                 <span class="right">
                   {{ data[0].values[3] }}
-                  <MeasurementDifferenceDiv :value="measureMentsDifferece[3]"/>
+                  <MeasurementDifferenceDiv :value="measurementsDifference[3]"/>
                 </span>
               </div>
             </div>
@@ -65,7 +65,7 @@
                 <label class="left">Stomach:</label>
                 <span class="right">
                   {{ data[0].values[4] }}
-                  <MeasurementDifferenceDiv :value="measureMentsDifferece[4]"/>
+                  <MeasurementDifferenceDiv :value="measurementsDifference[4]"/>
                 </span>
               </div>
             </div>
@@ -77,7 +77,7 @@
                 <label class="left">Waist: </label>
                 <span class="right">
                   {{ data[0].values[5] }}
-                  <MeasurementDifferenceDiv :value="measureMentsDifferece[5]"/>
+                  <MeasurementDifferenceDiv :value="measurementsDifference[5]"/>
                 </span>
               </div>
             </div>
@@ -89,7 +89,7 @@
                 <span>Thigh: </span>
                 <span class="right">
                   {{ data[0].values[6] }}
-                  <MeasurementDifferenceDiv :value="measureMentsDifferece[6]"/>
+                  <MeasurementDifferenceDiv :value="measurementsDifference[6]"/>
                 </span>
               </div>
             </div>
@@ -101,7 +101,7 @@
                 <label class="left">Calf: </label>
                 <span class="right">
                   {{ data[0].values[7] }}
-                  <MeasurementDifferenceDiv :value="measureMentsDifferece[7]"/>
+                  <MeasurementDifferenceDiv :value="measurementsDifference[7]"/>
                 </span>
               </div>
             </div>
@@ -127,10 +127,10 @@ export default {
     MeasurementDifferenceDiv
   },
   computed: {
-    measureMentsDifferece: function () {
+    measurementsDifference: function () {
       const diffArray = []
       if (this.data.length > 1) {
-        for (let i = 0; i < this.data.length; i++) {
+        for (let i = 0; i < this.data[0].values.length; i++) {
           const item = this.data[0].values[i] - this.data[1].values[i]
           diffArray.push(item)
         }
