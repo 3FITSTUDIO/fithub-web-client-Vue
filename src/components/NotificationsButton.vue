@@ -1,6 +1,6 @@
 <template>
 <router-link to="/notifications">
-  <input class="edit_btn btn" type="submit" :value="title_with_unseen"/>
+  <b-button variant="dark"> {{title_with_unseen}} </b-button>
 </router-link>
 </template>
 
@@ -20,15 +20,16 @@ export default {
 }
 </script>
 
-<style scoped>
-  .edit_btn {
-    font-weight: bold;
-    margin: 5px;
-    color: whitesmoke;
-    background-color: #3f9380;
-    width: auto;
-  }
-  .edit_btn:hover {
-    background-color: white;
-  }
+<style scoped lang="sass">
+  .btn-dark
+    font-weight: bold
+    color: #fff
+    background-color: #3f9380!important
+    border-color: #3f9380!important
+    width: 200px
+    &:hover
+     color: #000000
+     background-color: #ffffff!important
+     border-color: #ffffff!important
+
 </style>

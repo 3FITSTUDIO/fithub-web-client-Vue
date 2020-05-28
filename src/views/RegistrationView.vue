@@ -43,7 +43,7 @@
                   Year of birth
                   <select class="f-right" v-model="selectedYearOfBirth">
                     <option disabled value="">Choose year</option>
-                    <option v-for="item in yearsToSelect" v-bind:value="item" v-bind:key="item.id">
+                    <option v-for="item in yearsToSelect" v-bind:value="item.value" v-bind:key="item.id">
                       {{ item.value }}
                     </option>
                   </select>
@@ -54,13 +54,13 @@
                   Height
                   <select class="f-right" v-model="selectedHeight">
                     <option disabled value="">Choose height</option>
-                    <option v-for="item in heightsToSelect" v-bind:value="item" v-bind:key="item.id">
+                    <option v-for="item in heightsToSelect" v-bind:value="item.value" v-bind:key="item.id">
                       {{ item.value }} cm
                     </option>
                   </select>
                 </div>
               </div>
-              <span>Selected: {{ selectedSex }} {{selectedYearOfBirth}} {{selectedHeight}}</span>
+<!--              <span>Selected: {{ selectedSex }} {{selectedYearOfBirth}} {{selectedHeight}}</span>-->
               <div class="form-row">
                 <div class="form-group col-md-8 offset-md-2">
                   <span>E-mail <span v-if="!email.isCorrect" class="right">Wrong e-mail</span>
@@ -82,7 +82,7 @@
               </div>
               <span class="left" v-if="emptyInputs">Fill all forms</span>
               <span class="left" v-if="errorWhileCreatingUser">Error while creating user</span>
-              <input v-on:click="checkValues" style="float: right" value="create new account" class="btn float-center local-width fithub_btn"/>
+              <input v-on:click="handleRegisterButtonClick" style="float: right" value="create new account" class="btn float-center local-width fithub_btn"/>
             </form>
           </div>
         </div>
@@ -94,6 +94,7 @@
 <script>
 import { mapState } from 'vuex'
 import { sha256 } from 'js-sha256'
+import errorModel from '../models/ErrorInputeModel'
 
 export default {
   name: 'RegistrationView',
@@ -144,10 +145,15 @@ export default {
     emailCorrect: state => state.emailCorrect
   }),
   methods: {
-    resetALLInputValues () {
+    resetInputValues () {
       this.selectedYearOfBirth = ''
       this.selectedHeight = ''
       this.selectedSex = ''
+      this.surname.value = ''
+      this.name.value = ''
+      this.login.value = ''
+    },
+    resetInputIsCorrect () {
       this.emptyInputs = false
       this.login.isCorrect = true
       this.name.isCorrect = true
@@ -160,56 +166,60 @@ export default {
       this.$store.state.loginCorrect = true
       this.$store.state.emailCorrect = true
       this.$store.state.errorWhileCreatingUser = false
-      if (this.login.value !== '' &&
-        this.name.value !== '' &&
-        this.surname.value !== '' &&
-        this.email.value !== '' &&
-        this.password.value !== '' &&
-        this.confirm_password.value !== '' &&
-        this.selectedSex !== '' &&
-        this.selectedHeight !== '' &&
-        this.selectedYearOfBirth !== '') {
+      if (errorModel.checkIfInputsNotEmpty(this.login,
+        this.name,
+        this.surname,
+        this.email,
+        this.password,
+        this.confirm_password,
+        this.selectedSex,
+        this.selectedHeight,
+        this.selectedYearOfBirth)) {
+        this.resetInputIsCorrect()
         this.emptyInputs = false
-        this.resetALLInputValues()
         console.log('niepuste!')
         this.login.isCorrect = (this.regExpIfLoginCorrect.test(this.login.value))
         this.name.isCorrect = (this.regExpIfStringCorrect.test(this.name.value))
         this.surname.isCorrect = (this.regExpIfStringCorrect.test(this.surname.value))
         this.email.isCorrect = (this.reExpIfEmailCorrect.test(this.email.value))
         this.password.isCorrect = (this.regExpIfPassCorrect.test(this.password.value))
-        this.ifAllCorrect = (this.login.isCorrect &&
-          this.name.isCorrect &&
-          this.surname.isCorrect &&
-          this.email.isCorrect &&
-          this.password.isCorrect &&
+        this.ifAllCorrect = errorModel.checkIfAllInputsValid(this.login,
+          this.name,
+          this.surname,
+          this.email,
+          this.password,
           this.arePasswordsCorrect)
         if (this.ifAllCorrect) {
-          this.$store.dispatch('checkIfEmailOrLoginInDataBase', {
-            login: this.login.value,
-            name: this.name.value,
-            surname: this.surname.value,
-            email: this.email.value,
-            password: sha256(this.password.value),
-            sex: this.selectedSex,
-            height: this.selectedHeight,
-            yearOfBirth: this.selectedYearOfBirth
-          })
-          console.log(this.login.value,
-            this.name.value,
-            this.surname.value,
-            this.email.value,
-            this.password.value,
-            this.confirm_password)
+          return true
         }
-      } else this.emptyInputs = true
+      } else {
+        this.emptyInputs = true
+        return false
+      }
     },
-    createBirthArray () {
+    handleRegisterButtonClick () {
+      if (this.checkValues()) {
+        this.$store.dispatch('checkIfEmailOrLoginInDataBase', {
+          login: this.login.value,
+          name: this.name.value,
+          surname: this.surname.value,
+          email: this.email.value,
+          password: sha256(this.password.value),
+          sex: this.selectedSex,
+          height: this.selectedHeight,
+          yearOfBirth: this.selectedYearOfBirth
+        }).then(() => {
+          this.resetInputValues()
+        })
+      }
+    },
+    createSelectArrays () {
       this.yearsToSelect = Array.from({ length: 100 }, (x, i) => { return { id: i, value: 2020 - i } })
       this.heightsToSelect = Array.from({ length: 90 }, (x, i) => { return { id: i, value: 130 + i } })
     }
   },
   mounted () {
-    this.createBirthArray()
+    this.createSelectArrays()
   },
   watch: {
     confirm_password () {

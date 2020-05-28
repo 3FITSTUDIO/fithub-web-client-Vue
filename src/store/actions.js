@@ -55,10 +55,11 @@ export default {
     }
   },
   async checkIfEmailOrLoginInDataBase ({ commit, state, dispatch }, payload) {
-    console.log(payload.email, payload.login)
-    dispatch('checkIfUserWithParamInDatabase', payload.login)
-    dispatch('checkIfUserWithParamInDatabase', payload.email)
+    console.log(payload)
+    await dispatch('checkIfUserWithParamInDatabase', payload.login)
+    await dispatch('checkIfUserWithParamInDatabase', payload.email)
     if (state.emailCorrect && state.loginCorrect) {
+      console.log('tworze')
       await fetch(state.url + 'user?', {
         method: 'POST',
         headers: {
@@ -77,6 +78,9 @@ export default {
       })
         .then(() => {
           state.userCreated = true
+          state.accessDenied = false
+          state.serverError = false
+          state.isRegistrationViewUp = false
           router.push('/')
         })
         .catch(error => {
@@ -100,13 +104,14 @@ export default {
       })
     if (result !== undefined) {
       if (result.length !== 0) {
+        console.log(result)
         if (param.includes('@') && param.includes('.')) {
           state.emailCorrect = false
         } else state.loginCorrect = false
       }
     }
   },
-  async changeParam ({ state, commit }, param) { // change password or email
+  async changeParam ({ state, commit }, param) { // change password or email or height
     const result = await fetch(state.url + 'user/' + state.userId)
       .then(data => data.json())
       .catch(error => console.log(error))

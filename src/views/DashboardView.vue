@@ -2,9 +2,7 @@
   <div class="container">
     <header style="margin: 2%;">
       <div>
-        <h1>
-          {{this.$store.state.username}}, welcome in FitHUB!
-        </h1>
+        <welcome-name-div/>
         <notifications-button/>
       </div>
     </header>
@@ -27,10 +25,16 @@
               <hr/>
             </div>
             <div class="myBox-body" v-if="sleepDataLoaded && stepsDataLoaded">
-              <h5>Steps {{stepsDate}}</h5>
-              <DoughnutChart :max-value="7000" :user-value="stepsValue"/>
-              <h5>Sleep ({{sleepDate}})</h5>
-              <DoughnutChart :max-value="8" :user-value="sleepValue"/>
+              <h5> Steps:
+                <span v-if="stepsData.length !== 0"> {{stepsData[0].date}}</span>
+                <p v-else> No input data :(</p>
+              </h5>
+              <DoughnutChart v-if="stepsData.length !== 0" :max-value="7000" :user-value="stepsData[0].value"/>
+              <h5> Sleep:
+                <span v-if="sleepData.length !== 0">({{sleepData[0].date}})</span>
+                <p v-else>No input data :(</p>
+              </h5>
+              <DoughnutChart v-if="sleepData.length !== 0" :max-value="8" :user-value="sleepData[0].value"/>
             </div>
           </div>
         </div>
@@ -51,6 +55,7 @@ import { mapState } from 'vuex'
 import MeasurementDataDiv from '../components/MeasurementDataDiv'
 import { sha256 } from 'js-sha256'
 import NotificationsButton from '../components/NotificationsButton'
+import WelcomeNameDiv from '../components/WelcomeNameDiv'
 
 export default {
   name: 'DashboardView',
@@ -61,12 +66,13 @@ export default {
     }
   },
   components: {
+    WelcomeNameDiv,
     NotificationsButton,
     MeasurementDataDiv,
     DoughnutChart,
     DataDivDashboard
   },
-  beforeMount () {
+  mounted () {
     this.getMeasurementsData()
     this.getCaloriesData()
     this.getWeightsData()
@@ -111,10 +117,10 @@ export default {
     notificationsDataLoaded: state => state.notificationsDataLoaded,
     caloriesData: state => state.caloriesData,
     weightsData: state => state.weightsData,
-    sleepValue: state => state.sleepData[0].value,
-    sleepDate: state => state.sleepData[0].date,
-    stepsValue: state => state.stepsData[0].value,
-    stepsDate: state => state.sleepData[0].date,
+    sleepData: state => state.sleepData,
+    // sleepDate: state => (state.sleepDataLoaded && state.sleepData !== []) ? state.sleepData[0].date : undefined,
+    // stepsValue: state => (state.stepsDataLoaded && state.stepsData !== []) ? state.stepsData[0].value : undefined,
+    stepsData: state => state.stepsData,
     measurementsData: state => {
       if (state.measurementsData !== []) {
         return state.measurementsData

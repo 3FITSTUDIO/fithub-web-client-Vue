@@ -48,8 +48,8 @@ export default {
   },
   sortByDate (state, payload) {
     const result = payload.data.sort(methods.sortByDate).reverse()
-    // console.log(result)
-    // console.log(payload.path)
+    console.log(result)
+    console.log(payload.path)
     if (payload.path === 'calories') {
       state.caloriesData = result
       state.caloriesDataLoaded = true
