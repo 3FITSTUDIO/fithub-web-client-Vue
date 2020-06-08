@@ -50,8 +50,8 @@ export default {
   },
   methods: {
     logValues () {
-      console.log(this.maxValue)
-      console.log(this.userValue)
+      // console.log(this.maxValue)
+      // console.log(this.userValue)
     }
   }
 }

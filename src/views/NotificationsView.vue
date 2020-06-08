@@ -43,26 +43,22 @@ export default {
   components: { NotificationsDeleteButton },
   computed: mapState({
     notificationsData: state => state.notificationsData
-  }),
-  mounted () {
-    this.logAll()
-  },
-  methods: {
-    logAll () {
-      console.log('Progress' + this.notificationsData)
-    }
-  }
+  })
 }
 </script>
 
 <style scoped>
 .card {
   padding: 0px;
-  min-width: 400px;
+  min-width: 250px;
 }
 .card-body{
   margin: auto;
-  padding: 0px;
+  padding: 0px 0px 10px 0px;
+}
+
+.form-row {
+  min-height: 200px;
 }
   .message {
     text-align: center;
