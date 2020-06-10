@@ -10,7 +10,6 @@ export default {
   },
   methods: {
     deleteNotification () {
-      console.log(this.buttonID)
       this.$store.dispatch('deleteRecord', { path: 'notifications', itemID: this.buttonID })
         .then(() => {
           this.getArrayData()

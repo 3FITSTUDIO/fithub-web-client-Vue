@@ -1,9 +1,5 @@
 import methods from './methods'
 export default {
-  logData (state) {
-    console.log(state.login)
-    console.log(state.password)
-  },
   signIn (state) {
     state.isLoggedIn = true
   },
@@ -48,8 +44,6 @@ export default {
   },
   sortByDate (state, payload) {
     const result = payload.data.sort(methods.sortByDate).reverse()
-    console.log(result)
-    console.log(payload.path)
     if (payload.path === 'calories') {
       state.caloriesData = result
       state.caloriesDataLoaded = true

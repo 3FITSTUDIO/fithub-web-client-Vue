@@ -6,7 +6,7 @@
         <notifications-button/>
       </div>
     </header>
-    <div class="row">
+    <div class="row" style="margin-bottom: 3%;">
       <div class="col-sm-6 col-md-3" v-if="caloriesDataLoaded">
         <div class="d-flex justify-content-center">
           <DataDivDashboard :data="[...caloriesData]" :name-of-data="caloriesTitle"/>
@@ -53,7 +53,6 @@ import DoughnutChart from '../components/DoughnutChart'
 import DataDivDashboard from '../components/DataDivDashboard'
 import { mapState } from 'vuex'
 import MeasurementDataDiv from '../components/MeasurementDataDiv'
-import { sha256 } from 'js-sha256'
 import NotificationsButton from '../components/NotificationsButton'
 import WelcomeNameDiv from '../components/WelcomeNameDiv'
 
@@ -90,16 +89,12 @@ export default {
     },
     getCaloriesData () {
       this.$store.dispatch('getArrayData', { path: 'calories' })
-      // console.log(this.$store.state.caloriesData[0].id)
-      console.log(sha256('Message') + ': to hash')
     },
     getWeightsData () {
       this.$store.dispatch('getArrayData', { path: 'weights' })
-      // console.log(this.$store.state.caloriesData[0].id)
     },
     getMeasurementsData () {
       this.$store.dispatch('getArrayData', { path: 'measurements' })
-      // console.log(this.measurementsData),
     },
     getTrainingsData () {
       this.$store.dispatch('getArrayData', { path: 'trainings' })
@@ -118,8 +113,6 @@ export default {
     caloriesData: state => state.caloriesData,
     weightsData: state => state.weightsData,
     sleepData: state => state.sleepData,
-    // sleepDate: state => (state.sleepDataLoaded && state.sleepData !== []) ? state.sleepData[0].date : undefined,
-    // stepsValue: state => (state.stepsDataLoaded && state.stepsData !== []) ? state.stepsData[0].value : undefined,
     stepsData: state => state.stepsData,
     measurementsData: state => {
       if (state.measurementsData !== []) {

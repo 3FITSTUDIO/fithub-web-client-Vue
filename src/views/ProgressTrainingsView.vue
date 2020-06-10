@@ -18,15 +18,9 @@ export default {
   computed: mapState({
     trainingsData: state => state.trainingsData
   }),
-  mounted () {
-    this.logAll()
-  },
   methods: {
     getTrainingsData () {
       this.$store.dispatch('getArrayData', { path: 'trainings' })
-    },
-    logAll () {
-      console.log('Progress' + this.trainingsData)
     }
   }
 }

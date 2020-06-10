@@ -2,14 +2,14 @@ import router from '../router'
 
 export default {
   async signIn ({ commit, state }, payload) {
-    console.log(payload.login, payload.password)
+    console.log(state.url + 'user?')
     const result = await fetch(state.url + 'user?' + new URLSearchParams({
       login: payload.login,
       password: payload.password
     }))
       .then(data => data.json())
+      // eslint-disable-next-line handle-callback-err
       .catch(error => {
-        console.log(error)
       })
     if (result !== undefined) {
       if (result.length !== 0) {
@@ -31,7 +31,6 @@ export default {
   },
   async signOut ({ commit }) {
     await router.push('/')
-    console.log('out')
     commit('signOut')
   },
   async toSingInView (commit) {
@@ -42,24 +41,21 @@ export default {
     await router.push('/registration')
   },
   async getArrayData ({ commit, state }, payload) {
-    console.log(state.url + payload.path + '?' + new URLSearchParams({ userId: state.userId }))
     const result = await fetch(state.url + payload.path + '?' + new URLSearchParams({
       userId: state.userId
     }))
       .then(data => data.json())
+      // eslint-disable-next-line handle-callback-err
       .catch(error => {
-        console.log(error)
       })
     if (result !== undefined) {
       commit('sortByDate', { data: result, path: payload.path })
     }
   },
   async checkIfEmailOrLoginInDataBase ({ commit, state, dispatch }, payload) {
-    console.log(payload)
     await dispatch('checkIfUserWithParamInDatabase', payload.login)
     await dispatch('checkIfUserWithParamInDatabase', payload.email)
     if (state.emailCorrect && state.loginCorrect) {
-      console.log('tworze')
       await fetch(state.url + 'user?', {
         method: 'POST',
         headers: {
@@ -83,8 +79,8 @@ export default {
           state.isRegistrationViewUp = false
           router.push('/')
         })
+        // eslint-disable-next-line handle-callback-err
         .catch(error => {
-          console.log(error)
           state.errorWhileCreatingUser = true
         })
     }
@@ -96,15 +92,13 @@ export default {
     } else {
       urlSP = new URLSearchParams({ login: param })
     }
-    console.log(state.url + 'user?' + urlSP)
     const result = await fetch(state.url + 'user?' + urlSP)
       .then(data => data.json())
+      // eslint-disable-next-line handle-callback-err
       .catch(error => {
-        console.log(error)
       })
     if (result !== undefined) {
       if (result.length !== 0) {
-        console.log(result)
         if (param.includes('@') && param.includes('.')) {
           state.emailCorrect = false
         } else state.loginCorrect = false
@@ -114,14 +108,14 @@ export default {
   async changeParam ({ state, commit }, param) { // change password or email or height
     const result = await fetch(state.url + 'user/' + state.userId)
       .then(data => data.json())
-      .catch(error => console.log(error))
+      // eslint-disable-next-line handle-callback-err
+      .catch(error => { })
     if (result !== undefined) {
       if (typeof (param) === 'number') {
         result.height = param
       } else if (param.includes('@') && param.includes('.')) {
         result.email = param
       } else result.password = param
-      console.log(JSON.stringify(result))
       await fetch(state.url + 'user/' + state.userId, {
         method: 'PUT',
         headers: {
@@ -130,7 +124,6 @@ export default {
         body: JSON.stringify(result)
       })
         .then(() => {
-          console.log('wchodze do zmiany')
           if (typeof (param) === 'number') {
             state.heightChanged = true
             state.height = param
@@ -142,8 +135,7 @@ export default {
             state.password = param
           }
         })
-        .catch(error => {
-          console.log(error)
+        .catch(() => {
           if (typeof (param) === 'number') {
             state.errorWhileChangingHeight = true
           } else if (param.includes('@') && param.includes('.')) {
@@ -160,10 +152,8 @@ export default {
       }
     })
       .then(() => {
-        console.log('Notification deleted')
       })
-      .catch(error => {
-        console.log(error)
+      .catch(() => {
       })
   }
 }

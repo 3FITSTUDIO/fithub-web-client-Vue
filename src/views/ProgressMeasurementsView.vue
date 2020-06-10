@@ -5,8 +5,8 @@
         <header v-if="lastFourMeasurementsData.length === 0" style="margin: 2%;">
           <h1>Measurements: no input data :(</h1>
         </header>
-        <div class="row" style=" margin-top: 2%;" >
-          <div v-for="item in lastFourMeasurementsData" :key="item.id" class="col-sm-6 col-md-3">
+        <div class="row" style=" margin-top: 2%; margin-bottom: 2%" >
+          <div style="margin-bottom: 2%;" v-for="item in lastFourMeasurementsData" :key="item.id" class="col-sm-6 col-md-3">
             <div class="d-flex justify-content-center h-100">
               <div class="myBox">
                 <div class="myBox-header">

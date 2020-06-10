@@ -68,7 +68,7 @@
                     New password
                     <span v-if="!password.isCorrect" class="right failure">Wrong password</span>
                   </span>
-                  <input style="margin-bottom: 2px" v-model="password.value" placeholder="P@ssword123" type="password" id="inputNewPassword" class="form-control">
+                  <input style="margin-bottom: 2px" v-model="password.value" placeholder="Password123" type="password" id="inputNewPassword" class="form-control">
                   <span>
                     Confirm password
                     <span v-if="!arePasswordsCorrect" class="right failure">Invalid</span>
@@ -117,7 +117,7 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
       ifAllCorrect: true,
       wrongOldPassword: false,
       regExpIfEmailCorrect: new RegExp('^[a-z][a-z0-9]+[@][a-z]{2,}[.][a-z]{2,}$', 'i'),
-      regExpIfPassCorrect: new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$')
+      regExpIfPassCorrect: new RegExp('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$')
     }// Minimum osiem znaków, co najmniej jedna wielka litera, jedna mała litera, jedna cyfra i jeden znak specjalny:
   },
   computed: mapState({
@@ -156,19 +156,15 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
       this.isHeightSelected = true
       if (this.selectedHeight !== '') {
         this.resetAllVariables()
-        console.log(typeof (this.selectedHeight.value) === 'number')
         this.$store.dispatch('changeParam', this.selectedHeight.value)
       } else this.isHeightSelected = false
     },
     changeEmail () {
-      console.log(this.email.value)
       this.resetAllVariables()
       this.email.isCorrect = true
       this.emptyEmail = false
       if (this.email.value !== '') {
-        console.log('wchodze')
         this.email.isCorrect = (this.regExpIfEmailCorrect.test(this.email.value))
-        console.log((this.regExpIfEmailCorrect.test(this.email.value)))
         if (this.email.isCorrect) {
           this.$store.dispatch('checkIfUserWithParamInDatabase', this.email.value).then(() => {
             if (this.$store.state.emailCorrect) {
@@ -189,14 +185,12 @@ export default { // TODO wpisac wszystkie wartosci do Hasel, *sprawdzac czy new 
         this.password.isCorrect = (this.regExpIfPassCorrect.test(this.password.value))
         if (this.password.isCorrect) {
           this.$store.dispatch('changeParam', sha256(this.password.value)).then(() => {
-            console.log('probuje wejsc')
             if (this.passwordChanged) {
-              console.log('wchodze')
               this.oldPasswordInput = ''
               this.password.value = ''
               this.confirm_password = ''
             }
-          }) // TODO hash
+          })
         }
       } else if (sha256(this.oldPasswordInput) !== this.oldPassword) {
         this.wrongOldPassword = true

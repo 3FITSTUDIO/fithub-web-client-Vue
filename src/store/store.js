@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    url: new URL('http://localhost:3000/'),
+    url: new URL('http://90f49fbd800a.ngrok.io/'),
     isLoggedIn: false,
     isRegistrationViewUp: false,
     secretToken: 'token123',

@@ -34,7 +34,7 @@
               <div class="d-flex justify-content-center h-100">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Last Week</h4>
+                    <h4>Last 7 Records</h4>
                     <span>{{labelDescription}}</span>
                   </div>
                   <div class="card-body" style="background-color: #e3e7e6;">
@@ -54,7 +54,7 @@
               <div class="d-flex justify-content-center h-100">
                 <div class="card">
                   <div class="card-header">
-                    <h4>Last Month</h4>
+                    <h4>Last 30 Records</h4>
                     <span>{{labelDescription}}</span>
                   </div>
                   <div class="card-body" style="background-color: #e3e7e6;">
@@ -136,23 +136,11 @@ export default {
           })
         }
       }
-    },
-    logAll () {
-      console.log(
-        ' 7 days values: ' + this.lastSevenDaysValues + 'length: ' + this.lastSevenDaysValues.length +
-        '---------------------------------------' +
-        ' 7 days dates: ' + this.lastSevenDaysDates + 'length: ' + this.lastSevenDaysDates.length +
-        '---------------------------------------' +
-        ' 30 days values: ' + this.last30DaysValues + 'length: ' + this.last30DaysValues.length +
-        '---------------------------------------' +
-        ' 30 days dates: ' + this.last30DaysDates + 'length: ' + this.last30DaysDates.length
-      )
     }
   },
   mounted () {
     this.checkIfAtLeastXRecords(7)
     this.checkIfAtLeastXRecords(30)
-    this.logAll()
   }
 }
 </script>
